@@ -1,0 +1,180 @@
+---
+title: "Intro to R - Workshop"
+author: "Your Name Here!"
+date: "September 13, 2017"
+output:
+  pdf_document: default
+  html_document: default
+---
+
+## Calculator  
+__Practice__: Enter each of the following commands and confirm that the response is the correct answer.  
+
+\vspace{0.25cm}
+
+```{r calculator, eval = FALSE}  
+1 + 2 
+
+16*9
+
+sqrt(2)
+
+20/5
+
+18.5 - 7.21
+
+3 %% 2
+```
+
+\pagebreak
+
+## Importing Data  
+
+Notice the code that outputs in the console (the bottom left square). This is the code that you could have typed in the code chunk below to import the data yourself. Copy and paste the code that was output in the code chunk below.  
+
+```{r data, echo = FALSE, message = FALSE, warning = FALSE, purl = TRUE}
+# copy and paste the code that was used by R to import the data 
+# be careful to only copy the code that is next to the > signs! 
+```
+
+## Structure of Data  
+
+Run the folling code. What is output from each of the following commands?
+
+```{r structure}
+class(BlackfootFish)
+
+names(BlackfootFish)
+
+str(BlackfootFish)
+
+summary(BlackfootFish)
+```
+
+## Extracting Data  
+
+```{r extract, tidy = TRUE, purl = TRUE}  
+
+years <- BlackfootFish$year ## extracts year from the dataset and saves it into a new variable named year
+
+str(years) ## using the new variable (remember case matters!)
+```
+
+```{r bracket, purl = TRUE}  
+years <- BlackfootFish[, 5] ## This takes ALL rows of data but only the fifth column
+
+str(years) ## years enherits the structure of Blackfoot when we use this method
+```
+
+## Changing Data Type  
+
+```{r factors, purl = TRUE}  
+unique(BlackfootFish$species)  ## tells you the unique values of species
+
+unique(BlackfootFish$section) ## tells you the unique values of section  
+
+BlackfootFish$species <- as.factor(BlackfootFish$species)
+BlackfootFish$section <- as.factor(BlackfootFish$section)
+```
+
+__Practice:__ Verify that species and section are now viewed as categorical data. Verify that they have the same levels as before. (hint: use thel  levels function to check the levels of a variable)
+
+```{r verify}
+
+```
+
+## Packages  
+
+Now that the files are downloaded, we need to load them in order to use them. The following code will load each package, please run it!  
+
+```{r packages}  
+library(car)
+library(mosaic)
+```
+
+## Functions  
+
+```{r functions, purl = TRUE} 
+sqrt(2) ## 2 is the argument  
+
+mean(BlackfootFish$length)  ## takes a numerical input, but there are NA's in our data
+
+mean(na.omit(BlackfootFish$length))  ## removing the NA's makes all inputs numeric
+
+mean(BlackfootFish$species) ## gives an error because the input is not the correct data type  
+
+sum(BlackfootFish$length, BlackfootFish$weight) ## takes two inputs separated by a comma
+```
+
+## Finding Help  
+
+```{r help, eval = FALSE, purl = TRUE}    
+?mean
+help(mean)
+
+?Mean ##incorrect function name, case sensitive
+help(Mean)
+```
+
+```{r package_help, eval = FALSE}
+?mosaic
+
+help(mosaic)
+```
+
+## Cleaning Data  
+
+```{r NA, purl = TRUE}
+
+dim(BlackfootFish) ## gives the dimensions of the dataset in (row, column) format  
+
+dim(na.omit(BlackfootFish)) ## na.omit takes dataframes and vectors and returns the object with incomplete cases removed (NA's removed)
+```
+
+## Subsetting Data  
+
+```{r clean}
+BlackfootFish2 <- na.omit(BlackfootFish)
+```
+
+## Data Visualization  
+
+### Scatterplots
+
+```{r scatter, purl = TRUE}
+
+#?scatterplot()
+
+scatterplot(length ~ weight, data = BlackfootFish2) 
+
+scatterplot(length ~ weight, data = BlackfootFish2, reg.line = FALSE, smooth = FALSE, span = FALSE) ## taking out the trend line (smoother) and 95% CI
+```
+
+### Distribution
+
+```{r hist, purl = TRUE}
+
+hist(BlackfootFish$length)  
+
+
+hist(BlackfootFish$length, freq = F) ## converts to a density plot (area adds to 1)  
+
+
+hist(BlackfootFish$length, freq = F, xlab = "Length", main = "Fish Lengths in Kootenai River") ## adds x-axis label and title to plot
+
+
+hist(BlackfootFish$length, freq = F, nclass = 50, xlab = "Length", main = "Fish Lengths in Kootenai River") ## changes the number of bins
+
+```
+
+## Bar Charts  
+
+```{r barchart} 
+barchart(length ~ species, data = BlackfootFish)
+
+boxplot(length ~ species, data = BlackfootFish)
+
+library(beanplot)
+
+beanplot(length ~ species, data = BlackfootFish, method = "jitter", log = "", col = 7, main = "Fish Lengths in Kootenai River", xlab = "Species", ylab = "Length")
+```

@@ -1,37 +1,44 @@
 ---
 title: "Intro to R"
 output:
-  html_document: default
-  pdf_document: default
+  pdf_document:
+    fig_height: 3
+    fig_width: 5
+  html_document:
+    fig_width: 5
+  word_document:
+    fig_height: 3
+    fig_width: 5
 ---
 
 # Introduction  
-The term `R` is used to refer to both the programming language as well as the software that interprets the scripts written using it. The learning curve may be steeper than with other statistical software, but with R, the results of your analysis or your plot does not rely on remembering what order you clicked on things, but instead on the written commands you generated. In `R` you will work in scripts or with dynamic documents with scripts within them. Scripts may feel strange at first, but they make the steps you used in your analysis clear for both you and for someoone who wants to give you feedback.  
+The term `R` is used to refer to both the programming language as well as the software that interprets the scripts written using it. The learning curve may be steeper than with other statistical software, but with `R` the results of your analysis or your plot does not rely on remembering what order you clicked on things, but instead on the written commands you generated. In `R` you will work in scripts or with dynamic documents with scripts within them (Rmd or Rnw files). Scripts may feel strange at first, but they make the steps you used in your analysis clear for both you and for someoone who wants to give you feedback.  
 
-RStudio is a free computer application that allows you access to the resources of `R`, while providing you with a comfortable enviroment working environment. There are many ways you can interact with `R`, but for many reasons RStudio has become the most popular. To function correctly, RStudio needs R and therefore both need to be installed on your computer.  
+RStudio is a free computer application that allows you access to the resources of `R`, while providing you with a comfortable enviroment working environment. There are many ways you can interact with `R`, but for many reasons RStudio has become the most popular. To function correctly, RStudio uses `R` behind the scenes, and therefore both need to be installed on your computer.  
 
 For our use of RStudio the desktop version will suffice. There are many videos and guides for installation. See the Stat 217 textbook (pages 12-14) here: https://scholarworks.montana.edu/xmlui/bitstream/handle/1/2999/Greenwood_Book.pdf?sequence=3&isAllowed=y_  
 
 RStudio has a panel of 4 windows, where each can be viewed at the same time and has multiple tabs available.  
 
-* the __Source__ for your scripts and documents (top-left)  
+* the __Editor__ for your scripts and documents (top-left)  
 * the `R` __Console__ (bottom-left)  
-* your __Environment/History__ (top-right)  
+* your __Environment (Objects/Variables)/History__ (top-right)  
 * and your __Files/Plots/Packages/Help/Viewer__ (bottom-right).
 
 ![](rstudio.png)  
+\pagebreak 
 
 # Work Flow in `R`  
 
-It is good code writing practice to keep a set of all related data, analysis, plots, documents, etc. in the same folder. When all the pieces are in the same folder, it allows for a clean workflow and working directory. When you are executing code for a document/script `R` will search for things (such as data) in the same folder as the document/script, which is called a _relative path_. If you are having troubles loading your data into RStudio and you have saved your files in this way, it is possible that `R` is searching in the wrong location and you need to change your working directory.
+It is good code writing practice to keep a set of all related data, analysis, plots, documents, etc. in the same folder. When all the pieces are in the same folder, it allows for a clean workflow and working directory. When you are executing code for a document/script `R` will search for things (such as data) in the \underline{same} folder as the document/script, which is called a _relative path_. If you are having troubles loading your data into RStudio and you have saved your files in this way, it is possible that `R` is searching in the wrong location and you need to change your working directory.
 
 The easiest way to do this is,  
 
-* click on the Session drop-down from the top of the screen,  
-* select the Set Working Directory tab,  
-* select To Source File Location.  
+* click on the __Session__ drop-down from the top of the screen,  
+* select the __Set Working Directory__ tab,  
+* select __To Source File Location__.  
 
-After this process `R` will be searching for objects (such as data) in the folder that the document/script you're working on is saved in.  
+After this process `R` will be searching for objects (such as data) in the \underline{same} folder that the document/script you're working on is saved in.  
 
 # Working in `R`  
 
@@ -42,14 +49,23 @@ If R is ready to accept commands, the `R` console (in the bottom-left) will show
 ## Calculator  
 __Practice__: Enter each of the following commands and confirm that the response is the correct answer.  
 
-```{r calculator}  
+\vspace{0.25cm}
+
+```{r calculator, eval = FALSE}  
 1 + 2 
+
 16*9
+
 sqrt(2)
+
 20/5
+
 18.5 - 7.21
-3 %% 2
+
+3 %% 2 ## what is this doing?
 ```
+
+\pagebreak
 
 ## Importing Data  
 
@@ -70,11 +86,20 @@ BlackfootFish <- read_csv("BlackfootFish.csv")
 # be careful to only copy the code that is next to the > signs! 
 ```
 
+\vspace{0.5cm}
+
+```{r fakeData}
+# copy and paste the code that was used by R to import the data 
+# be careful to only copy the code that is next to the > signs! 
+```
+
 ## Structure of Data  
 
 The data we will use is organized into data tables. When you imported the BlackfootFish data into RStudio was saved as an object. You are able to inspect the structure of the BlackfootFish object using functions built in to `R` (no packages necessary).  
 
 Run the folling code. What is output from each of the following commands?
+
+\vspace{0.25cm}
 
 ```{r structure}
 class(BlackfootFish)
@@ -86,7 +111,7 @@ str(BlackfootFish)
 summary(BlackfootFish)
 ```
 
-The BlackfootFish dataset is saved as a tibble or tbl_df when you use the Import Dataset button. Due to the data having this structure, the  str command outputs more information than you really want! What class is each of the variables in our dataset?  
+The BlackfootFish dataset is saved as a `tibble` or `tbl_df` when you use the Import Dataset button. Due to the data having this structure, the  `str` command outputs more information than you really want! What class is each of the variables in our dataset?  
 
 \pagebreak
 
@@ -94,14 +119,18 @@ The BlackfootFish dataset is saved as a tibble or tbl_df when you use the Import
 
 If we were interested in accessing a specific variable in our dataset, we use the `$` command. This command extracts the specified variable (on the right of the `$` sign) from the dataset. When this is extracted, `R` views the variable as a vector of entries, which is what the [1:18352] refers to.
 
-```{r extract, purl = TRUE}  
+\vspace{0.25cm}
 
-years <- BlackfootFish$year ## extracts year from the dataset and saves it into a new variable named year
+```{r extract, tidy = TRUE, purl = TRUE}  
+
+years <- BlackfootFish$year 
+## extracts year from the dataset and saves it into a new variable named year
 
 str(years) ## using the new variable (remember case matters!)
 ```
 
 __Remarks:__  
+
 * In the above code `<-` is the assignment operator. It assigns values on the right to objects on the left. So, after executing `year <- 3`, the value of `year` is `3`. The arrow can be read as 3 goes into year. For historical reasons, you can also use = for assignments, but not in every context. Because of the slight differences in syntax, it is good practice to always use `<-` for assignments.  
 
     + In RStudio, typing Alt at the same time as the - key will write `<-` in a single keystroke. Neat!  
@@ -109,11 +138,12 @@ __Remarks:__
 * There are a few simple rules that apply when creating the same of a new object (like we did above):  
 
     + the name cannot start with a digit (`1year` is not allowed, but `year1` is)  
-    + the name cannot contain any punctuation symbols, except for . and _ (. is not recommended)  
+    + the name cannot contain any punctuation symbols, except for `.` and `_` (`.` is not recommended)  
     + you should not name your object the same as any common functions you may use (`mean`, `sd,` etc.).  
 
+\vspace{0.25cm}
 
-Another method for accessing data in the dataset is using the bracket notation ([row, column]). If you look to your right in the Environment window, you notice that RStudio tells you the dimensions of the BlackfootFish data. You can roughly view the dataset as a matrix of entries, with variable names for each of the columns. I could instead use bracket notation to perform the same task as above, using the following code.  
+Another method for accessing data in the dataset is using the bracket notation ([row, column]). If you look to your right in the __Environment__ window, you notice that RStudio tells you the dimensions of the BlackfootFish data. You can (roughly) view the dataset as a matrix of entries, with variable names for each of the columns. I could instead use bracket notation to perform the same task as above, using the following code.  
 
 ```{r bracket, purl = TRUE}  
 years <- BlackfootFish[, 5] ## This takes ALL rows of data but only the fifth column
@@ -121,9 +151,13 @@ years <- BlackfootFish[, 5] ## This takes ALL rows of data but only the fifth co
 str(years) ## years enherits the structure of Blackfoot when we use this method
 ```
 
+\pagebreak
+
 ## Changing Data Type  
 
 The species and section variables were saved as characters, but they are acutally factors. In the data section has two levels (Johnsrud and ScottyBrown) and species has four levels (RBT, WCT, Bull, and Brown). If we want `R` to view these variables as factors, we need to convert them to factors!  
+
+\vspace{0.25cm}
 
 ```{r factors, purl = TRUE}  
 unique(BlackfootFish$species)  ## tells you the unique values of species
@@ -134,15 +168,19 @@ BlackfootFish$species <- as.factor(BlackfootFish$species)
 BlackfootFish$section <- as.factor(BlackfootFish$section)
 ```
 
+\vspace{0.25cm}
+
 __Practice:__ Verify that species and section are now viewed as categorical data. Verify that they have the same levels as before. (hint: use thel  levels function to check the levels of a variable)
 
 ```{r verify}
 
 ```
 
+\pagebreak
+
 ## Packages  
 
-As we mentioned previously, `R` has many packages, which people around the world work on to provide and maintain new software and new capabilites for `R`. You will slowly accumulate a number of packages that you use often for a variety of purposes. In order to use the elements (data, functions) of the packages, you have to load the package.  
+As we mentioned previously, `R` has many packages, which people around the world work on to provide and maintain new software and new capabilites for `R`. You will slowly accumulate a number of packages that you use often for a variety of purposes. In order to use the elements (data, functions) of the packages, you have to first install the package (only once) and then load the package (every time).  
 
 
 We're going to install a few packages that are often used.  
@@ -156,36 +194,48 @@ There will be a large amount of output coming out of the console. This output is
 
 Now that the files are downloaded, we need to load them in order to use them. The following code will load each package, please run it!  
 
+\vspace{0.25cm}
+
 ```{r packages}  
 library(car)
 library(mosaic)
 ```
 
+\vspace{0.25cm}
+
 Notice that when loading the `mosaic` package that there is a large amount of output. This output is telling you all of the other packages that are loaded with the `mosaic` package, because `mosaic` is dependent on them (`dplyr`, `lattice`, `ggformula`, `ggplot2`, etc.).  
+
+\pagebreak
 
 ## Functions  
 
-In `R` there are both functions that are built in (require no package to be loaded), as well as functions that are housed within specific packages. You have already used a few built in functions to inspect the structure of the BlackfootFish data (`str`, `class`, `summary`). As we know, a function transforms an input into an output. You have to provide R with the inputs (arguments) required for the function to generate an output. The argument(s) inside a function happen after the `(` symbol. You know an object is a function when it is immediately followed by a  `(` (`str()`) and the corresponding closing `)` comes after the arguments.  
+In `R` there are both functions that are built in (require no package to be loaded), as well as functions that are housed within specific packages. You have already used a few built in functions to inspect the structure of the BlackfootFish data (`str`, `class`, `summary`). As we know, a function transforms an input into an output. You have to provide R with the inputs (arguments) required for the function to generate an output. The argument(s) inside a function happen after the `(` symbol. You know an object is a function when it is immediately followed by a  `(` (`str()`) and the corresponding closing `)` comes after the arguments are complete.  
 
 Arguments describe the detais of what a function is to do. Many functions take named arguments where the name of the argument is followed by an `=` sign and then the value of the argument. Here are some examples.  
+
+\vspace{0.25cm}
 
 ```{r functions, purl = TRUE} 
 sqrt(2) ## 2 is the argument  
 
-mean(BlackfootFish$length)  ## takes a numerical input
+mean(BlackfootFish$length)  ## takes a numerical input, but there are NA's in our data
+
+mean(na.omit(BlackfootFish$length))  ## removing the NA's makes all inputs numeric
 
 mean(BlackfootFish$species) ## gives an error because the input is not the correct data type  
 
 sum(BlackfootFish$length, BlackfootFish$weight) ## takes two inputs separated by a comma
 ```
 
+\pagebreak
+
 ## Finding Help  
 
 One of the chief reasons for `R`'s religious following is its wonderful documentation. If you know a function does what you want (say find the variance), but are not quite sure how it's spelled, what arguments it takes, or what package it lives in, don't fret! The `?` and `help()` commands are very powerful. For functions, placing the `?` before the name, will tell `R` to search for the name of the function through all of the packages you have installed.  
 
 * If it finds _one_ __identical match__, it will display the help file for that function in the Help tab in the bottom-right corner.  
-* If it finds _more than one_ __identical match__, it will display that function in the packages that you have to choose from.  
-* If it find _no_ __identical match__, it will tell you that "`No documentation for ____ in specified packages and libraries:,`" but suggests you use a `??` instead.  
+* If it finds _more than one_ __identical match__, it will display the functions, in their respective packages, that you have to choose from.  
+* If it find _no_ __identical match__, it will tell you that "`No documentation for ____ in specified packages and libraries:,`" and suggests you use a `??` instead.  
     
     + A `??` in front of the function name will search __all__ of `R` for named functions similar to what you typed.  
     + The output will tell you what package the function is in, as well as the function's name (`package::function`).  
@@ -208,27 +258,36 @@ help(mosaic)
 
 ## Cleaning Data  
 
-In many instances, you will deal with data that are not "clean". Based on the output we received from the `mean(BlackfootFish$length)` command, we know that there are quite a few NA's, possibly in a variety of variables. Based on the output below, how many rows in the BlackfootFish data have an NA present?  
+In many instances, you will deal with data that are not "clean". Based on the output we received from the `mean()` function, we know that there are quite a few NA's in the BlackfootFish data, possibly across a variety of variables. Based on the output below, how many rows in the BlackfootFish data have an NA present?  
 
-```{r NA, purl = TRUE}
+\vspace{0.5cm}
+
+```{r NA, purl = TRUE, tidy = TRUE}
 
 dim(BlackfootFish) ## gives the dimensions of the dataset in (row, column) format  
 
-dim(na.omit(BlackfootFish)) ## na.omit takes dataframes and vectors and returns the object with incomplete cases removed (NA's removed)
+dim(na.omit(BlackfootFish)) 
+## na.omit takes dataframes and vectors and returns the object with incomplete cases removed (NA's removed)
 ```
+
+\pagebreak
 
 ## Subsetting Data  
 
 If we wish to remove all of the NA's from the dataset, we can simply use the `na.omit` command from above. We can save the new "clean" dataset under a new name (creating a new object) or under the same name as before (replacing the old object with the new object).
 
+\vspace{0.5cm}
+
 ```{r clean}
 BlackfootFish2 <- na.omit(BlackfootFish)
 ```
 
+\vspace{0.5cm}
+
 __Remark:__ The computer is using an algorithm to return a dataset with no NA values anywhere in it. This algorithm goes through every row of the dataset and (roughly) has the following steps,  
 
 * Inspect the row to see if there is an NA anywhere in that row  
-* If there is an NA in that row, the logical (is.na) evaluates to FALSE, and the row is deleted  
+* If there is an NA in that row, the logical (`is.na`) evaluates to FALSE, and the row is deleted  
 * If there is not any NA's in that row, the logival evaluates to TRUE, and the row is retained  
 
 ## Data Visualization  
@@ -239,17 +298,26 @@ There are many different genres of data graphics, with many different variations
 * __distributions__: such as histograms and density curves  
 * __bar charts__: comparing values of a single variable across groups.  
 
+\pagebreak
+
 ### Scatterplots
 
 The main purpose of the scatterplot is to show the relationship between two variables across several or many cases. Most often, there is a cartesian coordinate system in which the x-axis represents one variable and the y-axis the second variable.  
 
-```{r scatter, purl = TRUE}
+\vspace{0.5cm}
+
+```{r scatter1, purl = TRUE}
 
 #?scatterplot()
-
 scatterplot(length ~ weight, data = BlackfootFish2) 
+```
 
-scatterplot(length ~ weight, data = BlackfootFish2, reg.line = FALSE, smooth = FALSE, span = FALSE) ## taking out the trend line (smoother) and 95% CI
+\vspace{0.5cm}
+
+```{r scatter2, purl = TRUE}
+
+scatterplot(length ~ weight, data = BlackfootFish2, reg.line = FALSE, smooth = FALSE, span = FALSE) 
+## taking out the trend line (smoother) and 95% CI
 ```
 
 \pagebreak 
@@ -258,32 +326,50 @@ scatterplot(length ~ weight, data = BlackfootFish2, reg.line = FALSE, smooth = F
 
 A histogram shows how many cases fall into a given range of values of a variable.  
 
-```{r hist, purl = TRUE}
+\vspace{0.5cm}
 
-hist(BlackfootFish$length)  
+```{r hist1, purl = TRUE}
+hist(BlackfootFish$length) 
+```
 
+\vspace{0.5cm}
 
+```{r hist2, purl = TRUE}
 hist(BlackfootFish$length, freq = F) ## converts to a density plot (area adds to 1)  
+```
 
+\pagebreak
 
-hist(BlackfootFish$length, freq = F, xlab = "Length", main = "Fish Lengths in Kootenai River") ## adds x-axis label and title to plot
+```{r hist3, purl = TRUE}
+hist(BlackfootFish$length, freq = F, xlab = "Length", main = "Fish Lengths in Kootenai River") 
+## adds x-axis label and title to plot
+```
 
+\vspace{0.5cm}
 
-hist(BlackfootFish$length, freq = F, nclass = 50, xlab = "Length", main = "Fish Lengths in Kootenai River") ## changes the number of bins
-
+```{r hist4, purl = TRUE}
+hist(BlackfootFish$length, freq = F, nclass = 50, xlab = "Length", main = "Fish Lengths in Kootenai River") 
+## changes the number of bins
 ```
 
 \pagebreak 
 
 ## Bar Charts  
 
-The familiar bar chart is e???ective when the objective is to compare a few di???erent quantities. 
+The familiar bar chart is effective when the objective is to compare a few different quantities. 
+
+\vspace{0.5cm}
 
 ```{r barchart} 
 barchart(length ~ species, data = BlackfootFish)
 
 boxplot(length ~ species, data = BlackfootFish)
 
+```
+
+\pagebreak
+
+```{r bean, purl = TRUE, tidy = TRUE}
 library(beanplot)
 
 beanplot(length ~ species, data = BlackfootFish, method = "jitter", log = "", col = 7, main = "Fish Lengths in Kootenai River", xlab = "Species", ylab = "Length")
