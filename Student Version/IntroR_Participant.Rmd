@@ -10,9 +10,7 @@ output:
 ## Calculator  
 __Practice__: Enter each of the following commands and confirm that the response is the correct answer.  
 
-\vspace{0.25cm}
-
-```{r calculator, eval = FALSE}  
+```{r calculator}  
 1 + 2 
 
 16*9
@@ -26,13 +24,11 @@ sqrt(2)
 3 %% 2
 ```
 
-\pagebreak
-
 ## Importing Data  
 
 Notice the code that outputs in the console (the bottom left square). This is the code that you could have typed in the code chunk below to import the data yourself. Copy and paste the code that was output in the code chunk below.  
 
-```{r data, echo = FALSE, message = FALSE, warning = FALSE, purl = TRUE}
+```{r data, message = FALSE, warning = FALSE}
 # copy and paste the code that was used by R to import the data 
 # be careful to only copy the code that is next to the > signs! 
 ```
@@ -53,14 +49,14 @@ summary(BlackfootFish)
 
 ## Extracting Data  
 
-```{r extract, tidy = TRUE, purl = TRUE}  
+```{r extract}  
 
 years <- BlackfootFish$year ## extracts year from the dataset and saves it into a new variable named year
 
 str(years) ## using the new variable (remember case matters!)
 ```
 
-```{r bracket, purl = TRUE}  
+```{r bracket}  
 years <- BlackfootFish[, 5] ## This takes ALL rows of data but only the fifth column
 
 str(years) ## years enherits the structure of Blackfoot when we use this method
@@ -68,7 +64,7 @@ str(years) ## years enherits the structure of Blackfoot when we use this method
 
 ## Changing Data Type  
 
-```{r factors, purl = TRUE}  
+```{r factors}  
 unique(BlackfootFish$species)  ## tells you the unique values of species
 
 unique(BlackfootFish$section) ## tells you the unique values of section  
@@ -94,7 +90,7 @@ library(mosaic)
 
 ## Functions  
 
-```{r functions, purl = TRUE} 
+```{r functions} 
 sqrt(2) ## 2 is the argument  
 
 mean(BlackfootFish$length)  ## takes a numerical input, but there are NA's in our data
@@ -108,7 +104,7 @@ sum(BlackfootFish$length, BlackfootFish$weight) ## takes two inputs separated by
 
 ## Finding Help  
 
-```{r help, eval = FALSE, purl = TRUE}    
+```{r help}    
 ?mean
 help(mean)
 
@@ -116,7 +112,7 @@ help(mean)
 help(Mean)
 ```
 
-```{r package_help, eval = FALSE}
+```{r package_help}
 ?mosaic
 
 help(mosaic)
@@ -124,7 +120,7 @@ help(mosaic)
 
 ## Cleaning Data  
 
-```{r NA, purl = TRUE}
+```{r NA}
 
 dim(BlackfootFish) ## gives the dimensions of the dataset in (row, column) format  
 
@@ -141,7 +137,7 @@ BlackfootFish2 <- na.omit(BlackfootFish)
 
 ### Scatterplots
 
-```{r scatter, purl = TRUE}
+```{r scatter}
 
 #?scatterplot()
 
@@ -152,7 +148,7 @@ scatterplot(length ~ weight, data = BlackfootFish2, reg.line = FALSE, smooth = F
 
 ### Distribution
 
-```{r hist, purl = TRUE}
+```{r hist}
 
 hist(BlackfootFish$length)  
 
