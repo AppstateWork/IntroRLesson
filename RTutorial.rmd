@@ -1,5 +1,6 @@
 ---
-title: "Intro to R"
+title: "Intro to R - Git"
+authors: Allison Theobold
 output:
   pdf_document:
     fig_height: 3
@@ -715,10 +716,11 @@ __Practice:__ Make a boxplot of the fish weights over the different years in the
 
 \pagebreak 
 
-# Workshop Materials Available:
+# Workshop Materials & Recordings Available:
 
-* through RStudio Cloud at: https://rstudio.cloud/project/46123  
-* through Allison's personal website at: http://www.math.montana.edu/graduate/pages/atheobold/ 
+* through RStudio Cloud at:   
+* through Allison's personal website at: http://www.math.montana.edu/allison_theobold
+* through the MSU Library YouTube channel: https://www.youtube.com/watch?v=W6E3hpcoUkQ&feature=youtu.be 
 
 
 # How to Learn More About `R`
@@ -733,3 +735,10 @@ using statistical methods, or creating graphics.
 The best place to start is playing around with the code from today's workshop.
 Change parts of the code and see what happens! Better yet, use the code from the
 workshop to investigate your own data! 
+
+\vspace{4cm}
+
+<p style="text-align: right; font-size: small;">Workshop build on: `r format(Sys.time())`</p>
+
+
+
