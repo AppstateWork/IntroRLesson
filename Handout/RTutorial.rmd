@@ -249,7 +249,7 @@ Notice the code that outputs in the console (the bottom left square). This is th
 
 ```{r data, echo = FALSE, message = FALSE, warning = FALSE, purl = TRUE}
 library(readr)
-BlackfootFish <- read.csv("BlackfootFish.csv",
+BlackfootFish <- read.csv("data/BlackfootFish.csv",
                           stringsAsFactors = FALSE)
 
 # copy and paste the code that was used by R to import the data 
