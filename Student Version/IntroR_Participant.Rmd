@@ -1,5 +1,5 @@
 ---
-title: Intro to R - February 2019
+title: Intro to R
 author: Allison Theobold
 output:
   pdf_document:

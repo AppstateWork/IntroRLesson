@@ -990,6 +990,30 @@ the dataset.
 
 \pagebreak 
 
+# Terminology Used in Workshop
+
+* *Command*: A command is what `R` executes. In an `R` script file (script.R), commands are automatically implied, as this type of file does not accept text, only in comments. In an Rnw (Markdown) file (report.Rnw), commands are delineated between three ticks on the top (```{r}) and three ticks (```) on the bottom.      
+
+* *Comment*: Helpful text added into a script environment. Comments can be used to describe functions, processes, a train of thought, so that when you return to your code, tomorrow or next year, you are able to understand the purpose of each line of code!  
+
+* *Object*: A variable created in `R`, to be used elsewhere in the code. Objects can be a variety of things, such as scalars (x <- 3), vectors (x <- c(1, 2, 3, 4, 5)), matrices, and dataframes, to name a few.  
+
+* *Assignment Arrow*: The assignment arrow `<-` is used to assign values on the right to the objects on the left (x <- 1). For historical reasons, you can also use `=` for assignments, but not everywhere. Because of these slight differences, it is recommended to *always* use assignment arrows for assignment. 
+
+* *Class*: Most `R` objects have a class attribute, a character vector giving the names of the classes from which the object inherits. Examples of classes are numeric, factor, integer, character, dataframe, matrix, list. 
+
+* *Vector*: A vector is a list of entries, all sharing the same class. A vector has only one dimension, so data extraction uses only a single entry in brackets (e.g. x[3]). You can create vectors of characters (c("a", "b", "c")), vectors of numbers (c(1, 2, 3)), to name a few.
+
+* *Matrix*: Similar to what you may have seen in a mathematics class, a matrix is an object with rows and columns, where every entry in the matrix must be a number. 
+
+* *Dataframe*: A dataframe is a collection of variables. Dataframes share many of the properties of matrices, where you are able to extract elements using bracket ([]) notation, and lists, where you are able to extract columns using `$`. Dataframes are used as the fundamental data structure by most of `R`'s statistical modeling software. 
+
+* *Argument*: Input(s) into a function, so that an output is created. Most functions take named arguments (e.g. data = BlackfootFish) and the order of the arguments is assumed to follow the order found in the function's help file. When using a named argument in a function, the name comes first, followed by an = sign, then the input. 
+
+* *Logical Value*: TRUE and FALSE value(s) that can be used to turn off/on options in functions and plots, and also to manipulate data. 
+
+\newpage
+
 # Workshop Materials & Recordings Available:
 
 * through RStudio Cloud at:   
