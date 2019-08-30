@@ -13,13 +13,16 @@ output:
 ---
 
 # Introduction  
-The term `R` is used to refer to both the programming language as well as the software that interprets the scripts written using it. The learning curve may be steeper than with other statistical software, but with `R` the results of your analysis or your plot does not rely on remembering what order you clicked on things, but instead on the written commands you generated. In `R` you will work in scripts or with dynamic documents, with scripts within them (Rmd or Rnw files). Scripts may feel strange at first, but they make the steps you used in your analysis clear for both you and for someone who wants to give you feedback.  
+The term `R` is used to refer to both the programming language as well as the software that interprets the scripts written using it. The learning curve may be steeper than with other statistical software, but with `R` the results of your analysis or your plot does not rely on remembering what order you clicked on things, but instead on the written commands you generated. In `R` you will work in scripts or with dynamic documents, with scripts within them (Rmd or Rnw files). Scripts may feel strange at first, but they make the steps you used in your analysis clear for both you and for someone who wants to give you feedback, further promoting the importance of reproducible science!  
 
-RStudio is a free computer application that allows you access to the resources of `R`, while providing you with a comfortable working environment. There are many ways you can interact with `R`, but for many reasons RStudio has become the most popular. To function correctly, RStudio uses `R` behind the scenes, hence both need to be installed on your computer. Both `R` and 
-`RStudio` are cross-platform, so that everyone's versions look and operate the same
-regardless of their operating system! 
+RStudio is a free computer application that allows you access to the resources of `R`, while providing you with a comfortable working environment. There are many ways you can interact with `R`, but for many reasons RStudio has become the most popular. To function correctly, RStudio uses `R` behind the scenes, hence both need to be installed on your computer. Both `R` and `RStudio` are cross-platform, so that everyone's versions look and operate the same regardless of their operating system! 
 
-For our use of RStudio the desktop version will suffice. There are many videos and guides for installation. See the Stat 217 textbook (pages 12-14) here: https://scholarworks.montana.edu/xmlui/bitstream/handle/1/2999/Greenwood_Book.pdf?sequence=3&isAllowed=y_  
+For our workshop, we will be making use of the RStudio Cloud. The RStudio Cloud
+functions and looks the same as the RStudio you can install on your computer, 
+but comes with some perks for collaboration and easily accessing the workshop
+materials. If you so wish, you can choose to download a local copy of RStudio 
+on your personal computer. There are many videos and guides for installation. 
+See the Stat 217 textbook (pages 12-14) here: https://scholarworks.montana.edu/xmlui/bitstream/handle/1/2999/Greenwood_Book.pdf?sequence=3&isAllowed=y_  
 
 RStudio has a panel of 4 windows, where each can be viewed at the same time and has multiple tabs available.  
 
@@ -33,15 +36,46 @@ RStudio has a panel of 4 windows, where each can be viewed at the same time and 
 
 # Work Flow in `R`  
 
-It is good code writing and file storage practice to keep a set of all related data, analysis, plots, documents, etc. in the same folder. When all the pieces are in the same folder, it allows for a clean workflow and working directory. When you are executing code for a document/script `R` will search for things (such as data) in the \underline{same} folder as the document/script, which is called a _relative path_. If you are having trouble loading your data into RStudio and you have saved your files in this way, it is possible that `R` is searching in the wrong location and you need to change your working directory.
+Many people tend to organize their projects like this: 
 
-The easiest way to do this is,  
+![bad_layout.png]
 
-* click on the __Session__ drop-down from the top of the screen,  
-* select the __Set Working Directory__ tab,  
-* select __To Source File Location__.  
+There are many reasons we should *always* avoid this shamble of organization: 
+* it is really hard to tell which version of your data is original and what
+versions are modified  
+* things get really messy because all types of files are mixed together  
+* it's probably hard for you to find things and relate the correct files to 
+their respective output  
 
-After this process `R` will be searching for objects (such as data) in the \underline{same} folder that the document/script you're working on is saved in.  
+Ultimately, good project organization will make your life easier! It helps 
+ensure the integrity of your data, makes it simpler to share your code or get
+help with your code, allows for you know exactly what code you used on a 
+paper, and it's easier to pick a project back up. 
+
+
+It is good code writing and file storage practice to keep a set of all related data, analysis, plots, documents, etc. in the same folder. RStudio makes this process
+easy with the invention of projects. In an RStudio project, all of the all the
+project's pieces are in the same folder. This allows for a clean workflow and 
+a simple working directory for `R`. When you are executing code for a 
+document/script `R` will search for things (such as data) in the 
+\underline{same} folder as the document/script, which is called a _relative path_.
+If you are having trouble loading your data into RStudio and you have saved your
+files in this way, it is possible that `R` is searching in the wrong location 
+and you need to change your working directory.
+
+The easiest way to do this is, whenever you start working on a new project in 
+RStudio, 
+
+1. Click on the "File" menu button, then select "New Project"    
+2. Click "New Directory"  
+3. Click "New Project"  
+4. Create a name for your project (make it explanatory!)  
+5. Select where the project should live  
+6. Click the "Create Project" button  
+7. Open the project!
+
+After this process `R` will be searching for objects (such as data) in the \underline{same} folder as the project. This allows for us to keep all of our
+files in a self-contained system. 
 
 # Working in `R`  
 
