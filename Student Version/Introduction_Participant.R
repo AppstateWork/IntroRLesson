@@ -1,4 +1,4 @@
-####################### Calculator ###############################
+## Calculator  
 
 1 + 2 
 
@@ -13,55 +13,171 @@ sqrt(2)
 3 %% 2 ## what is this doing?
 
 
-################# Importing Data #################################  
+
+## Creating Objects 
+
+(x <- 6)
+
+2.2 * x
+
+4 + x 
+
+x %% 3
+
+#overwrite x's value, so that it has a new value
+x <- 2 
+
+y <-  x + 6
+
+
+###################### Exercise 1 ################################# 
+# Change the value of x to back to 6 and see what the value of y is. 
+# Did it change from before? Is the value of `y` 8 or 12?
+  
+
+
+
+## Working with Different Data Types 
+
+temps <- c(50, 55, 60, 65)
+temps
+
+animals <- c("cat", "dog", "bird", "fish")
+animals
+
+
+class(temps)
+class(animals)
+
+
+###################### Exercise 2 ################################# 
+# Create a vector that contains decimal valued numbers. 
+# Then check what data type does that vector contain?
+
+
+
+
+logic <- c(TRUE, FALSE, FALSE, TRUE)
+
+class(logic)
+
+
+###################### Exercise 3 ################################# 
+# What happens when we try to mix different data types into one vector?
+# Speculate what will happen when we run each of the following lines of code:
+
+num_char <- c(1, 2, 3, "a")
+
+num_logic <- c(1, 2, 3, FALSE)
+
+char_logic <- c("a", "b", "c", TRUE)
+
+guess <- c(1, 2, 3, "4")
+
+
+
+## Lists  
+  
+my_first_list <- list(animals, temps, logic)
+my_first_list
+
+
+## Importing Data  
 
 # copy and paste the code that was used by R to import the data 
 # be careful to only copy the code that is next to the > signs! 
 
-################# Structure of Data ##############################  
+
+
+## Structure of Data  
 
 class(BlackfootFish)
+
+dim(BlackfootFish) 
+## What is the first number represent? What about the second number?
 
 names(BlackfootFish)
 
 str(BlackfootFish)
 
 summary(BlackfootFish) 
-## What type of variable is each column in our dataset?
+## What is the data type of each variable in our dataset?
 
 
-################ Extracting Data ##################################  
+## Dataframes 
 
-years <- BlackfootFish$year
+## Extracting Data  
+
+years <- BlackfootFish$year 
 ## extracts year from the dataset and saves it into a new variable named year
 
-str(years) 
-## using the new variable (remember case matters!)
+str(years) ## using the new variable (remember case matters!)
 
-years <- BlackfootFish[ , 5] 
-## This takes ALL rows of data but only the fifth column
+## How would you determine how long the vector is?
+
+
+years <- BlackfootFish[, 5] ## This takes ALL rows of data but only the fifth column
 ## Same as years <- BlackfootFish[1:18352, 5]
 
 str(years)
+```
 
-#################### PRACTICE #####################################
 
-df <- data.frame("x" = c("H", "N", "T", "W", "V"), 
-                 "y" = c("May", "Oct", "Mar", "Aug", "Feb"), 
-                 "z" = c(2010, 2015, 2018, 2017, 2019))
-df
+###################### PRACTICE ################################# 
+x <- as.matrix(cbind(c(1, 5, 9, 13),
+                     c(2, 6, 10, 14), 
+                     c(3, 7, 11, 15), 
+                     c(4, 8, 12, 16)))
 
-# What would be output if you entered: df[3, ]?  
 
-# What would you input to get an output of "Aug"?
+###################### Exercise 4 ################################# 
+# What would be output if you entered: `x[3, ]`?  
 
-# What would you input to get an output of `2015`? 
-# Can you think of two ways to do it?
-  
-# How would you pull off only columns `x` and `z`? 
-# Can you think of two ways to do it?
 
-###################### Changing Data Type ###############################  
+###################### Exercise 5 ################################# 
+# Exercise 5:** What would you input to get an output of 4?
+
+
+
+df <- data.frame(
+  x = c("H", "N", "T", "W", "V"), 
+  y = c("May", "Oct", "Mar", "Aug", "Feb"),
+  z = c(2010, 2015, 2018, 2017, 2019)
+  )
+
+
+###################### Exercise 6 ################################# 
+# What would you input to get an output of 2015? Can you think of two ways to do it?
+
+
+
+
+###################### Exercise 7 ################################# 
+# How would you pull off only columns x and z? Can you think of two ways to do it?
+
+
+
+
+###################### Exercise 8 ################################# 
+# How would you modify the script below, to get an output of 22 24? 
+s <- c(22, 24, 49, 18, 1, 6)
+s[]
+
+
+
+###################### Exercise 9 ################################# 
+# What would be output if you entered: s[3, ]?  
+
+
+
+
+###################### Exercise 10 ################################# 
+# What would you input to get an output of 22 49? 
+
+
+
+
+## Changing Data Type  
 
 unique(BlackfootFish$species)  
 ## tells you the unique values of species
@@ -70,46 +186,59 @@ unique(BlackfootFish$section)
 ## tells you the unique values of section  
 
 BlackfootFish$speciesF <- as.factor(BlackfootFish$species)
-BlackfootFish$section <- as.factor(BlackfootFish$section)
-
-
-######################### PRACTICE ###########################################
-
-# Year was saved as an integer data type (1989 - 2006), but it is a factor. 
-# Write theRcode to convert year to a factor (as you did with section and species).
-
-
-# Now, verify that year is now viewed as a categorical variable, with the same levels as before.
-#(hint: you have already used three functions that would do this for you)
-
-# What order did R put the levels of year in? 
-# Do they need changed to be in chronological order?6
+## creates a new variable that is the factor version of species
+BlackfootFish$sectionF <- as.factor(BlackfootFish$section)
+## creates a new variable that is the factor version of section
 
 
 
-
-######################## Packages ##########################################################  
-
-library(car)
-library(mosaicCore)
+BlackfootFish$speciesF <- factor(BlackfootFish$species, 
+                                 levels = c("Bull", "Brown", "RBT", "WCT"))
 
 
-######################## Finding Help ########################################################  
+
+###################### Exercise 11 ################################# 
+# Year was saved as an integer data type (1989 - 2006), but it is a categorical variable (a factor).
+# Write the code to create a new variable called yearF that is a factor of year. 
+
+
+
+
+###################### Exercise 12 ################################# 
+# Now, verify that yearF is viewed as a categorical variable, with the same levels as year.
+
+
+
+## Issue with factors
+BlackfootFish$yearF <- as.factor(BlackfootFish$year)
+year_recover <- as.numeric(BlackfootFish$yearF)
+
+ds <- data.frame(BlackfootFish$yearF, year_recover)
+head(ds)
+
+## Packages  
+
+library(devtools)
+library(tidyverse)
+
+
+
+## Finding Help  
 
 ?str
 help(str)
 
 ?Levels ##incorrect function name, case sensitive
-??Levels
+??Levels ##looks through all installed packages for a match
 
-?mosaicplot
+?tidyverse
 
-help("mosaicplot")
+help(tidyverse)
 
 
-########################### Functions ##########################################################  
+## Functions  
 
-############################# Order Matters! ########################## 
+# ?rep
 
 rep(0, times = 10) ## repeating 0 three times
 
@@ -119,79 +248,82 @@ rep(0, 10) ## no named arguments
 
 rep(10, 0) ## not what we wanted!
 
-############################# Other Functions ########################## 
+
 
 mean(BlackfootFish$weight)  ## takes a numerical input, but there are NA's in our data
 
-mean(BlackfootFish$weight, #ARGUMENT HERE)  ## add in the argument that removes the NA's
+mean(BlackfootFish$weight, argument here! )  ## add in the argument that removes the NA's
 
 median(BlackfootFish$species) ## gives an error because the input is not the correct data type  
 
 cor(BlackfootFish$length, BlackfootFish$weight) ## takes multiple inputs separated by a comma
 
-## Does cor() have an option to remove NA's?
+## Does cor have an option to remove NA's?
 
 
-######################## Cleaning Data ########################################  
+## Cleaning Data  
 
-dim(BlackfootFish) 
-## gives the dimensions of the dataset in (row, column) format  
+dim(BlackfootFish) ## gives the dimensions of the dataset in (row, column) format  
 
 dim(na.omit(BlackfootFish)) 
-## na.omit takes dataframes, matricies, and vectors 
-## and returns the object with incomplete cases removed (NA's removed)
+## na.omit takes dataframes, matricies, and vectors and returns the object with incomplete cases removed (NA's removed)
 
 
-################ Subsetting Data ###########################################  
+## Subsetting Data  
 
 BlackfootFish2 <- na.omit(BlackfootFish) 
 ## Creates a new dataframe, where the NA's have all been removed 
 
 
-################ Data Visualization #######################################  
+## Data Visualization  
 
-############################# Scatterplots ########################## 
+### Scatterplots
 
-?scatterplot()
-scatterplot(length ~ weight, data = BlackfootFish) 
+#?plot()
+plot(length ~ weight, 
+     data = BlackfootFish2) 
 
-scatterplot(length ~ weight, data = BlackfootFish2, regLine = FALSE, smooth = FALSE) 
-## taking out the trend line (smoother) and 95% CI
 
-## How would you take out the boxplots on the sides of the plot?
+plot(length ~ weight, 
+     data = BlackfootFish2, 
+     xlab = "Weight (grams)", 
+     ylab = "Length (cm)", 
+     las = 1) 
+## adding in axis labels and changing orientation of axis labels
 
-############################# Distribution ########################## 
+
+### Distribution
 
 hist(BlackfootFish2$length) 
 
-hist(BlackfootFish2$length, freq = F) 
-## converts to a density plot (area adds to 1) 
 
-## Does freq need to be named?
+hist(BlackfootFish2$length, freq = F) ## converts to a density plot (area adds to 1) 
+
+
+# Does freq need to be named?
 hist(BlackfootFish2$length, FALSE)
 ## Why is there an error about the "number of breaks"?
 
+
 hist(BlackfootFish2$length, freq = F, xlab = "Length", 
-     main = "Fish Lengths in Kootenai River") 
+     main = "Fish Lengths in Blackfoot River") 
 ## adds x-axis label AND title to plot
 
+
 hist(BlackfootFish2$length, freq = F, nclass = 50, 
-     xlab = "Length", main = "Fish Lengths in the Blackfoot River") 
-## changes the number of bins
-
-## If you put the arguments in the correct order, you don't need to name them, like:
-hist(BlackfootFish2$length, 50, FALSE, "Length", 
-     "Fish Lengths in the Blackfoot River") 
+     xlab = "Length", 
+     main = "Fish Lengths in the Blackfoot River", 
+     las = 1) 
+## changes the number of bins and orientation of axis labels
 
 
-############################# Boxplots ########################## 
-
-boxplot(weight ~ species, data = BlackfootFish2)
+### Side-by-Side Boxplots  
 
 ## What other options are available to add to your boxplot?
+boxplot(weight ~ species, data = BlackfootFish2)
 
 
-############################# Bar Charts ########################## 
+### Bar Charts  
 
 section <- table(BlackfootFish2$section)
 ## tables the number of fish that were caught in each section
@@ -200,10 +332,14 @@ barplot(section, xlab = "Section", ylab = "Number of Fish", main = "Fish Caught 
         las = 1, col = "blue", ylim = c(0, 12000))
 
 
-
-####################### PRACTICE ####################################
-
+###################### Exercise 13 ################################# 
 # Using statistics or graphics, which year in our dataset had the most fish caught?  
+  
 
 
+
+###################### Exercise 14 ################################# 
 # Make a boxplot of the fish weights over the different years in the dataset.  
+
+
+
