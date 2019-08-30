@@ -54,9 +54,10 @@ has multiple tabs available.
 
 Many people tend to organize their projects like this: 
 
-![bad_layout.png]
+![](images/bad_layout.png)
 
 There are many reasons we should *always* avoid this shamble of organization: 
+
 * it is really hard to tell which version of your data is original and what
 versions are modified  
 * things get really messy because all types of files are mixed together  
@@ -79,6 +80,8 @@ document/script `R` will search for things (such as data) in the
 If you are having trouble loading your data into RStudio and you have saved your
 files in this way, it is possible that `R` is searching in the wrong location 
 and you need to change your working directory.
+
+\newpage
 
 The easiest way to do this is, whenever you start working on a new project in 
 RStudio, 
@@ -284,7 +287,7 @@ class(animals)
 
 ```
 
-\vspace{0.25cm}
+\newpage
 
 **Exercise 2:** Create a vector that contains decimal valued numbers. Then check
 what data type does that vector contain?
@@ -334,7 +337,7 @@ In each of these vectors, the two types of data were *coerced* into a single
 data type. This happens in a hierarchy, where some data types get preference 
 over others. Can we draw a diagram of the hierarchy?  
 
-\pagebreak 
+\vspace{1cm}
 
 ## Lists  
  
@@ -366,7 +369,7 @@ next to the name of the list `my_first_list[[1]]`.
 
 ![](images/list_example.JPG)
 
-\pagebreak
+\vspace{1cm}
 
 ## Importing Data  
 
@@ -397,8 +400,9 @@ BlackfootFish <- read.csv("data/BlackfootFish.csv",
 ```{r fakeData}
 # copy and paste the code that was used by R to import the data 
 # be careful to only copy the code that is next to the > signs! 
-```
 
+
+```
 
 ## Structure of Data  
 
@@ -425,8 +429,7 @@ summary(BlackfootFish)
 ## What is the data type of each variable in our dataset?
 ```
 
-\vspace{0.5cm}
-
+\newpage
 
 When we inspect dataframes, or other objects in `R`, there are some general 
 functions that are useful to check the content/structure of the data. 
@@ -486,6 +489,8 @@ str(years) ## using the new variable (remember case matters!)
 ## How would you determine how long the vector is?
 
 ```
+
+\newpage
 
 Another method for accessing data in the dataset is using matrix notation 
 ([row, column]). If you look to your right in the __Environment__ window, you 
@@ -659,8 +664,6 @@ There will be a large amount of output coming out of the console. This output is
 chose for it to use when downloading (I chose Northern Michigan University). 
 Once the computer has downloaded the packages, it will tell you that 
 "`The downloaded binary packages are in`", followed by the location of the files.  
-
-\newpage 
 
 Now that the files are downloaded, we need to load them in order to use them. 
 The following code will load each package, please run it!  
@@ -840,7 +843,7 @@ row is retained
 * Once it has stepped through every row, the function outputs the "cleaned" 
 dataframe
 
-\pagebreak 
+\vspace{0.2cm} 
 
 ## Subsetting Data  
 
@@ -855,6 +858,8 @@ object with the new object).
 BlackfootFish2 <- na.omit(BlackfootFish) 
 ## Creates a new dataframe, where the NA's have all been removed 
 ```
+
+\newpage
 
 ## Data Visualization  
 
