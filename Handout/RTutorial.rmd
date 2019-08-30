@@ -601,7 +601,7 @@ following order: Bull, Brown, RBT, and WCT.
 Using the `factor` function this would look like:
 
 ```{r}
-BlackfootFish$species <- factor(BlackfootFish$species, 
+BlackfootFish$speciesF <- factor(BlackfootFish$species, 
                                 levels = c("Bull", "Brown", "RBT", "WCT"))
 ```
 
