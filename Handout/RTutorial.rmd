@@ -12,7 +12,13 @@ output:
     fig_width: 5
 ---
 
-# Introduction  
+```{r, echo = FALSE}
+knitr::opts_chunk$set(tidy = TRUE, 
+                      fig.align="center", 
+                      tidy.opts = list(width.cutoff = 60))
+```
+
+
 The term `R` is used to refer to both the programming language as well as the 
 software that interprets the scripts written using it. The learning curve may be
 steeper than with other statistical software, but with `R` the results of your 
@@ -68,7 +74,6 @@ Ultimately, good project organization will make your life easier! It helps
 ensure the integrity of your data, makes it simpler to share your code or get
 help with your code, allows for you know exactly what code you used on a 
 paper, and it's easier to pick a project back up. 
-
 
 It is good code writing and file storage practice to keep a set of all related 
 data, analysis, plots, documents, etc. in the same folder. RStudio makes this 
@@ -144,7 +149,7 @@ sqrt(2)
 ```
 
 
-## Creating Objects 
+# Creating Objects 
 
 These operations, however, are not very interesting. To do more useful things in
 `R`, we need to assign values to an object. To create an object, we tell `R` the
@@ -203,7 +208,7 @@ to automatically check and correct for issues in your code styling. More on
 packages to come!
 
 
-## Working with Objects 
+# Working with Objects 
 
 When you assign a value to an object (like we did previously) `R` does not output
 anything by default. If you enclose the code you wrote in parenthesis, then `R` 
@@ -221,7 +226,6 @@ Once the object has been created, you can use it! Run the following lines of cod
 
 \vspace{0.25cm}
 
-
 ```{r}
 2.2 * x
 
@@ -236,6 +240,8 @@ x %% 3
 We can also overwrite an object's value, so that it has a new value. In the code
 below we give `x` a new value of 2 and use that to create a new object `y`. 
 
+\vspace{0.25cm}
+
 ```{r}
 x <- 2 
 
@@ -248,7 +254,7 @@ y <-  x + 6
 **Exercise 1:** Change the value of `x` to back to 6 and see what the value of 
 `y` is. Did it change from before? Is the value of `y` 8 or 12?
 
-## Working with Different Data Types 
+# Working with Different Data Types 
 
 A vector is the basic data type in `R`. A vector is a series of values, which 
 can be either numbers or characters, but every entry of the vector must be the 
@@ -277,14 +283,14 @@ animals
 \vspace{0.25cm}
 
 Important features of a vector is the type of data they store. Run the following
-lines of 
-code and decide what type of data the vectors contain. 
+lines of code and decide what type of data the vectors contain. 
+
+\vspace{0.25cm}
 
 ```{r}
 class(temps)
 
 class(animals)
-
 ```
 
 \newpage
@@ -330,16 +336,15 @@ num_logic <- c(1, 2, 3, FALSE)
 char_logic <- c("a", "b", "c", TRUE)
 
 guess <- c(1, 2, 3, "4")
-
 ```
+
+\vspace{0.25cm}
 
 In each of these vectors, the two types of data were *coerced* into a single 
 data type. This happens in a hierarchy, where some data types get preference 
 over others. Can we draw a diagram of the hierarchy?  
 
-\vspace{1cm}
-
-## Lists  
+# Lists  
  
 While the elements of vectors have to be of the same data type, a list is an `R`
 object that allows for you to store any number of any type of object. If you 
@@ -351,27 +356,51 @@ components can be characters, vectors, matrices, or other data structures.
 Here, we create a list whose components are the three vectors we've been 
 working with:
 
+\vspace{0.25cm}
+
 ```{r}
 my_first_list <- list(animals, temps, logic)
 my_first_list
 ```
 
-We notice that when printing a list, the output looks a bit different. There 
-are a whole bunch of brackets! Let's break them down. 
+\vspace{0.25cm}
 
-I like to think of a list as a shelf with cubby holes. The cubby holes are the
-components of the list, but there are elements in each cubby.  
+We notice that when printing a list, the output looks a bit different. There 
+are a whole bunch of brackets! Let's break them down. I like to think of a list
+as a shelf with cubby holes. The cubby holes are the components of the list, 
+but there are elements in each cubby.  
 
 * To get to a specific component (cubby) of a list, you use the double brackets
-next to the name of the list `my_first_list[[1]]`.  
+next to the name of the list (e.g `my_first_list[[1]]`).  
 * To access the elements inside each cubby, you then use single square brackets 
-`my_first_list[[1]][2]`. 
+(e.g. `my_first_list[[1]][2]`). 
+
+<center> 
 
 ![](images/list_example.JPG)
 
-\vspace{1cm}
+</center>
 
-## Importing Data  
+\vspace{0.5cm}
+
+### Named Lists
+
+```{r}
+my_named_list <- list(title = "statistics", 
+                      numbers = 1:10,
+                      data = TRUE)
+my_named_list
+```
+
+\vspace{0.25cm}
+
+We see the output for a named list is slightly different. Instead of double 
+brackets next to each component, there are now `$` and names of the variable. 
+This will help you understand the structure of data.frames (coming up next)!
+
+\newpage
+
+# Importing Data  
 
 * Use the __Import Dataset__ button in the __Environment__ tab  
 * Choose the __From CSV__ option  
@@ -395,8 +424,6 @@ BlackfootFish <- read.csv("data/BlackfootFish.csv",
 
 \vspace{0.5cm}
 
-
-
 ```{r fakeData}
 # copy and paste the code that was used by R to import the data 
 # be careful to only copy the code that is next to the > signs! 
@@ -404,7 +431,7 @@ BlackfootFish <- read.csv("data/BlackfootFish.csv",
 
 ```
 
-## Structure of Data  
+# Structure of Data  
 
 The data we will use is organized into data tables. When you imported the 
 BlackfootFish data into RStudio was saved as an object. You are able to inspect
@@ -416,20 +443,24 @@ Run the following code. What is output from each of the following commands?
 \vspace{0.25cm}
 
 ```{r structure}
-class(BlackfootFish)
+class(BlackfootFish) ## What is the object class of the data?
 
-dim(BlackfootFish) 
-## What is the first number represent? What about the second number?
+dim(BlackfootFish) ## What is the first number represent? What about the second number?
 
-names(BlackfootFish)
+names(BlackfootFish) ## What does this output refer to?
 
-str(BlackfootFish)
-
-summary(BlackfootFish) 
-## What is the data type of each variable in our dataset?
+str(BlackfootFish) ## What is the structure of the data?
 ```
 
-\newpage
+\pagebreak 
+
+```{r}
+summary(BlackfootFish) ## What is the data type of each variable in our dataset?
+
+typeof(BlackfootFish) ## What is the storage mode of a data.frame?
+```
+
+\vspace{0.5cm}
 
 When we inspect dataframes, or other objects in `R`, there are some general 
 functions that are useful to check the content/structure of the data. 
@@ -441,36 +472,36 @@ Here are some:
     + `ncol(data)`: number of columns  
 
 - content:  
-    + head(data): first 6 rows 
-    + tail(data): last 6 rows  
-    + View(data): opens viewer window in separate tab  
-
+    + `head(data)`: first 6 rows  
+    + `tail(data)`: last 6 rows  
+    + `View(data)`: opens viewer window in separate tab  
+    
 - names:  
-    + colnames(data): column names of dataframe  
-    + rownames(data): row names of dataframe  
+    + `colnames(data)`: column names of dataframe  
+    + `rownames(data)`: row names of dataframe  
 
 - summary of content:  
     + `str(data)`: structure of object and information about the columns  
-    + `glimpse(data)`: similar information to `str`, but neater output
+    + `glimpse(data)`: similar information to `str`, but neater output  
     + `summary(data)`: summary statistics for each column  
   
+\newpage
 
-## Dataframes 
+# Dataframes 
 
 What is a dataframe? A dataframe is a type of `R` object and is the *de facto* 
 structure of tabular data. You can create dataframes by hand, but most of us do 
 not use `R` to input our data by hand. Instead, we import our data using `R` 
-commands that read in spreadsheets (`read.csv`, `read_xls`, etc.). A dataframe 
-is a set of columns, where each column is a vector. Thus, columns have the same 
-data type *within* the column, but potentially different data types *across* 
-columns. 
+commands that read in spreadsheets (`read.csv`, `read_csv`, `read_excel` etc.). 
+A dataframe is a set of columns, where each column is a vector. Thus, columns 
+have the same data type *within* the column, but potentially different data types *across* columns. 
 
 For example, the columns `trip`, `mark`, and `year` are integers (whole numbers),
 `weight` and `length` are numeric (numbers with decimals), and `section` and 
 `species` are characters. 
 
 
-## Extracting Data  
+# Extracting Data  
 
 If we were interested in accessing a specific variable in our dataset, we can 
 use the `$` command. This command extracts the specified variable (on the right
@@ -490,7 +521,7 @@ str(years) ## using the new variable (remember case matters!)
 
 ```
 
-\newpage
+\vspace{0.25cm}
 
 Another method for accessing data in the dataset is using matrix notation 
 ([row, column]). If you look to your right in the __Environment__ window, you 
@@ -498,6 +529,7 @@ notice that RStudio tells you the dimensions of the BlackfootFish data. You can
 (roughly) view the dataset as a matrix of entries, with variable names for each 
 of the columns. I could instead use bracket notation to perform the same task as
 above, using the following code.  
+
 \vspace{0.25cm}
 
 ```{r bracket, purl = TRUE}  
@@ -520,9 +552,11 @@ x <- as.matrix(cbind(c(1, 5, 9, 13),
 head(x)
 ```
 
-What would be output if you entered: `x[3, ]`?  
+\vspace{0.25cm}
 
-What would you input to get an output of 4?
+**Exercise 4:** What would be output if you entered: `x[3, ]`?  
+
+**Exercise 5:** What would you input to get an output of 4?
 
 \vspace{1.5cm}
 
@@ -538,27 +572,32 @@ df <- data.frame(
 head(df)
 ```
 
-What would you input to get an output of `2015`? Can you think of two ways to do it?
+**Exercise 6:** What would you input to get an output of `2015`? Can you 
+think of two ways to do it?
 
-How would you pull off only columns `x` and `z`? Can you think of two ways to do it?
+**Exercise 7:** How would you pull off only columns `x` and `z`? Can you 
+think of two ways to do it?
 
-\vspace{1.5cm}
+**Exercise 8:** How would you modify the script below, to get an output 
+of `[1] 22 24`? 
 
-How would you modify the script below, to get an output of `[1] 22 24`? 
+\vspace{0.25cm}
 
 ```{r, eval = FALSE}
 s <- c(22, 24, 49, 18, 1, 6)
 s[]
 ```
 
-What would be output if you entered: `s[3, ]`?  
+\vspace{0.25cm}
 
-What would you input to get an output of `[1] 22 49`? 
+**Exercise 9:** What would be output if you entered: `s[3, ]`?  
+
+**Exercise 10:** What would you input to get an output of `[1] 22 49`? 
 ?
 
-\vspace{1.5cm}
+\vspace{0.25cm}
 
-## Changing Data Type  
+# Changing Data Type  
 
 Consider the variables species and section. These variables represent a
 broader class of what we call categorical variables. In `R` there are two ways 
@@ -591,7 +630,7 @@ BlackfootFish$sectionF <- as.factor(BlackfootFish$section)
 ## creates a new variable that is the factor version of section
 ```
 
-\vspace{0.25cm}
+\pagebreak
 
 There is also a function that will allow for you to specify the order of the 
 levels of a factor! As we saw before, the `as.factor` function chooses the 
@@ -600,16 +639,20 @@ following order: Bull, Brown, RBT, and WCT.
 
 Using the `factor` function this would look like:
 
+\vspace{0.25cm}
+
 ```{r}
 BlackfootFish$speciesF <- factor(BlackfootFish$species, 
                                 levels = c("Bull", "Brown", "RBT", "WCT"))
 ```
 
+\vspace{0.25cm}
+
 ## Practice:  
 
-Year was saved as an integer data type (1989 - 2006), but it is a categorical 
-variable (a factor). Write the `R` code to create a new variable called `yearF` 
-that is a factor of `year` (as you did with section and species). 
+**Exercise 11:** Year was saved as an integer data type (1989 - 2006), but it is
+a categorical variable (a factor). Write the `R` code to create a new variable 
+called `yearF` that is a factor of `year` (as you did with section and species). 
 
 ```{r verify}
 
@@ -617,9 +660,9 @@ that is a factor of `year` (as you did with section and species).
 
 \vspace{1cm}
 
-Now, verify that `yearF` is viewed as a categorical variable, with the same 
-levels as `year`. 
-(hint: you have already used three functions that would do this for you)  
+**Exercise 12:** Now, verify that `yearF` is viewed as a categorical variable, 
+with the same levels as `year`. (hint: you have already used three functions 
+that would do this for you)  
 
 \vspace{1cm}
 
@@ -627,6 +670,8 @@ The issue with factors, lies with if/when you want to change it back to a
 number or character. In the code below I've decided that I don't want year 
 to be a factor and want to change it back to numeric. What happens when I use 
 the `as.numeric()` function on the yearF variable?  
+
+\vspace{0.25cm}
 
 ```{r, echo = FALSE}
 BlackfootFish$yearF <- as.factor(BlackfootFish$year)
@@ -641,9 +686,7 @@ head(ds)
 
 ```
 
-\vspace{1cm}
-
-## Packages  
+# Packages  
 
 As we mentioned previously, `R` has many packages, which people around the world
 work on to provide and maintain new software and new capabilities for `R`. 
@@ -690,7 +733,7 @@ have newer versions than what you have. Click on the packages that you wish to
 update, or click on the "Select All" button.  
 
 
-## Finding Help  
+# Finding Help  
 
 One of the chief reasons for `R`'s religious following is its wonderful 
 documentation. If you know a function does what you want (say find the variance),
@@ -714,25 +757,10 @@ instead.
 
 \vspace{0.25cm}    
 
-```{r help, eval = FALSE, purl = TRUE}    
-?str
-help(str)
-
-?Levels ##incorrect function name, case sensitive
-??Levels ##looks through all installed packages for a match
-```
-
 If you would like help on a particular package, say one that you just downloaded,
-then you can use the same command(s) to get help.  
-
-```{r package_help, eval = FALSE}
-?mosaic
-
-help(mosaic)
-```
-
-These commands will load up a help page (in RStudio) in the Help pane. Each 
-help page is broken down into sections"  
+then you can use the same command(s) to get help.  These commands will load up 
+a help page (in RStudio) in the Help pane. Each help page is broken down into 
+sections:  
 
 * Description: An extended description of what the function does.   
 * Usage: The arguments of the function and their default values.     
@@ -742,7 +770,7 @@ help page is broken down into sections"
 * See Also: Any related functions that may be useful.    
 * Examples: Some examples for how to use the function.
 
-## Functions  
+# Functions  
 
 In `R` there are both functions that are built in (require no package to be 
 loaded), as well as functions that are housed within specific packages. You have
@@ -781,7 +809,6 @@ rep(times = 10, 0) ## switching order of arguments
 rep(0, 10) ## no named arguments
 
 rep(10, 0) ## not what we wanted!
-
 ```
 
 \vspace{0.25cm}
@@ -801,8 +828,9 @@ median(BlackfootFish$species) ## gives an error because the input is not the cor
 cor(BlackfootFish$length, BlackfootFish$weight) ## takes multiple inputs separated by a comma
 
 ## Does cor have an option to remove NA's?
-
 ```
+
+\vspace{0.25cm}
 
 As seen in the functions above, some functions have *optional* arguments. If 
 they are not specified by the user, then they take on their default value 
@@ -810,7 +838,7 @@ they are not specified by the user, then they take on their default value
 such as whether it includes/excludes NA values. 
 
 
-## Cleaning Data  
+# Cleaning Data  
 
 In many instances, you will deal with data that are not "clean". Based on the 
 output we received from the `mean()` function, we know that there are NA's in 
@@ -843,25 +871,23 @@ row is retained
 * Once it has stepped through every row, the function outputs the "cleaned" 
 dataframe
 
-\vspace{0.2cm} 
-
-## Subsetting Data  
+# Subsetting Data  
 
 If we wish to remove all of the NA's from the dataset, we can simply use the 
 `na.omit` command from above. We can save the new "clean" dataset under a new name
 (creating a new object) or under the same name as before (replacing the old 
 object with the new object).
 
-\vspace{0.5cm}
+\vspace{0.25cm}
 
 ```{r clean, tidy = TRUE}
 BlackfootFish2 <- na.omit(BlackfootFish) 
 ## Creates a new dataframe, where the NA's have all been removed 
 ```
 
-\newpage
+\vspace{0.25cm}
 
-## Data Visualization  
+# Data Visualization  
 
 There are many different genres of data graphics, with many different variations
 on each genre. Here are some commonly encountered kinds:  
@@ -871,14 +897,14 @@ on each genre. Here are some commonly encountered kinds:
 * __bar charts__: displaying frequencies or densities of a single categorical 
 variable  
 
-### Scatterplots
+## Scatterplots
 
 The main purpose of the scatterplot is to show the relationship between two 
 variables across several or many cases. Most often, there is a Cartesian 
 coordinate system in which the x-axis represents one variable and the y-axis the
 second variable.  
 
-\vspace{0.5cm}
+\vspace{0.25cm}
 
 ```{r scatter1, purl = TRUE}
 #?plot()
@@ -898,24 +924,24 @@ plot(length ~ weight,
 ## adding in axis labels and changing orientation of axis labels
 ```
 
-### Distribution
+## Distribution
 
 A histogram shows how many observations fall into a given range of values of a 
 variable.  
 
-\vspace{0.5cm}
+\vspace{0.25cm}
 
 ```{r hist1, purl = TRUE}
 hist(BlackfootFish2$length) 
 ```
 
-\vspace{0.5cm}
+\newpage
 
 ```{r hist2, purl = TRUE}
 hist(BlackfootFish2$length, freq = F) ## converts to a density plot (area adds to 1) 
 ```
 
-\vspace{2cm}
+\vspace{0.25cm}
 
 ```{r, eval = FALSE}
 ## Does freq need to be named?
@@ -927,14 +953,16 @@ hist(BlackfootFish2$length, FALSE)
 \vspace{0.25cm}
 
 ```{r hist3, purl = TRUE}
-hist(BlackfootFish2$length, freq = F, xlab = "Length", 
+hist(BlackfootFish2$length, 
+     freq = F, 
+     xlab = "Length", 
      main = "Fish Lengths in Blackfoot River") 
 ## adds x-axis label AND title to plot
 ```
 
 \newpage
 
-```{r hist4, purl = TRUE}
+```{r hist4}
 hist(BlackfootFish2$length, freq = F, nclass = 50, 
      xlab = "Length", 
      main = "Fish Lengths in the Blackfoot River", 
@@ -942,28 +970,27 @@ hist(BlackfootFish2$length, freq = F, nclass = 50,
 ## changes the number of bins and orientation of axis labels
 ```
 
-### Side-by-Side Boxplots  
+## Side-by-Side Boxplots  
 
 The familiar boxplot is effective when the objective is to compare the 
 distribution of a quantitative variable across different levels of a categorical
 variable. 
 
-\vspace{0.5cm}
+\vspace{0.25cm}
 
 ```{r boxplot} 
 ## What other options are available to add to your boxplot?
 boxplot(weight ~ species, data = BlackfootFish2)
-
 ```
 
 \pagebreak 
 
-### Bar Charts  
+## Bar Charts  
 
 Bar charts are an effective way to compare the frequencies of levels of a 
 categorical variable. 
 
-\vspace{0.5cm}
+\vspace{0.25cm}
 
 ```{r bar, purl = TRUE, tidy = TRUE, fig.height = 5}
 
@@ -976,7 +1003,9 @@ barplot(section, xlab = "Section", ylab = "Number of Fish", main = "Fish Caught 
 
 \vspace{0.25cm}
 
-__Practice:__  Using statistics or graphics, which year in our dataset had the 
+## Practice  
+
+**Exercise 13:**  Using statistics or graphics, which year in our dataset had the 
 most fish caught?  
 
 
@@ -986,7 +1015,7 @@ most fish caught?
 
 \vspace{2cm}
 
-__Practice:__ Make a boxplot of the fish weights over the different years in 
+**Exercise 14:** Make a boxplot of the fish weights over the different years in 
 the dataset.  
 
 ```{r}
@@ -1011,6 +1040,11 @@ the dataset.
 
 * *Matrix*: Similar to what you may have seen in a mathematics class, a matrix is an object with rows and columns, where every entry in the matrix must be a number. 
 
+* *List*: A generic vector, which contains other objects. A list can contain a
+variety of different classes of objects, e.g. characters, vectors, data.frames, 
+matrices, or outputs from a model! A data.frame is a special type of list where
+the components are vectors and they all have the same length. 
+
 * *Dataframe*: A dataframe is a collection of variables. Dataframes share many of the properties of matrices, where you are able to extract elements using bracket ([]) notation, and lists, where you are able to extract columns using `$`. Dataframes are used as the fundamental data structure by most of `R`'s statistical modeling software. 
 
 * *Argument*: Input(s) into a function, so that an output is created. Most functions take named arguments (e.g. data = BlackfootFish) and the order of the arguments is assumed to follow the order found in the function's help file. When using a named argument in a function, the name comes first, followed by an = sign, then the input. 
@@ -1021,9 +1055,11 @@ the dataset.
 
 # Workshop Materials & Recordings Available:
 
-* through RStudio Cloud at:   
+* through RStudio Cloud at: http://bit.ly/introduction-R  
+
 * through Allison's personal website at: 
-http://www.math.montana.edu/allison_theobold
+http://www.math.montana.edu/allison_theobold  
+
 * through the MSU Library YouTube channel: 
 https://www.youtube.com/watch?v=W6E3hpcoUkQ&feature=youtu.be 
 
