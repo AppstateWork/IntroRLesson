@@ -13,6 +13,7 @@ output:
 ---
 
 # Introduction  
+
 The term `R` is used to refer to both the programming language as well as the 
 software that interprets the scripts written using it. The learning curve may be
 steeper than with other statistical software, but with `R` the results of your 
@@ -571,9 +572,9 @@ If you would like help on a particular package, say one that you just downloaded
 then you can use the same command(s) to get help.  
 
 ```{r package_help, eval = FALSE}
-?mosaic
+?tidyverse
 
-help(mosaic)
+help(tidyverse)
 ```
 
 These commands will load up a help page (in RStudio) in the Help pane. Each 
@@ -633,13 +634,17 @@ Now let's look over some other functions that are often used:
 
 ```{r functions, purl = TRUE, eval = FALSE} 
 
-mean(BlackfootFish$weight)  ## takes a numerical input, but there are NA's in our data
+mean(BlackfootFish$weight)  
+## takes a numerical input, but there are NA's in our data
 
-mean(BlackfootFish$weight, argument here! )  ## add in the argument that removes the NA's
+mean(BlackfootFish$weight, argument here! )  
+## add in the argument that removes the NA's
 
-median(BlackfootFish$species) ## gives an error because the input is not the correct data type  
+median(BlackfootFish$species) 
+## gives an error because the input is not the correct data type  
 
-cor(BlackfootFish$length, BlackfootFish$weight) ## takes multiple inputs separated by a comma
+cor(BlackfootFish$length, BlackfootFish$weight) 
+## takes multiple inputs separated by a comma
 
 ## Does cor have an option to remove NA's?
 ```
@@ -702,10 +707,10 @@ plot(length ~ weight,
 ```{r scatter2, purl = TRUE}
 plot(length ~ weight, 
      data = BlackfootFish2, 
-     xlab = "Weight (grams)", 
+     xlab = "Weight (grams)", ## adds in axis labels 
      ylab = "Length (cm)", 
-     las = 1) 
-## adding in axis labels and changing orientation of axis labels
+     las = 1 ## changes orientation of axis labels
+     ) 
 ```
 
 ### Distribution
@@ -719,7 +724,9 @@ hist(BlackfootFish2$length)
 
 
 ```{r hist2, purl = TRUE}
-hist(BlackfootFish2$length, freq = F) ## converts to a density plot (area adds to 1) 
+hist(BlackfootFish2$length, 
+     freq = F ## converts to a density plot (area adds to 1) 
+    )
 ```
 
 
@@ -732,18 +739,22 @@ hist(BlackfootFish2$length, FALSE)
 
 
 ```{r hist3, purl = TRUE}
-hist(BlackfootFish2$length, freq = F, xlab = "Length", 
-     main = "Fish Lengths in Blackfoot River") 
-## adds x-axis label AND title to plot
+hist(BlackfootFish2$length, 
+     freq = F, 
+     xlab = "Length", ## adds x-axis lable 
+     main = "Fish Lengths in Blackfoot River" ## adds title to plot
+     ) 
 ```
 
 
 ```{r hist4, purl = TRUE}
-hist(BlackfootFish2$length, freq = F, nclass = 50, 
+hist(BlackfootFish2$length, 
+     freq = F, 
+     nclass = 50, ## changes the number of bins
      xlab = "Length", 
      main = "Fish Lengths in the Blackfoot River", 
-     las = 1) 
-## changes the number of bins and orientation of axis labels
+     las = 1 ## changes orientation of axis labels
+     ) 
 ```
 
 ### Side-by-Side Boxplots  
@@ -754,7 +765,8 @@ variable.
 
 ```{r boxplot} 
 ## What other options are available to add to your boxplot?
-boxplot(weight ~ species, data = BlackfootFish2)
+boxplot(weight ~ species, 
+        data = BlackfootFish2)
 
 ```
 
@@ -768,8 +780,14 @@ categorical variable.
 section <- table(BlackfootFish2$section)
 ## tables the number of fish that were caught in each section
 
-barplot(section, xlab = "Section", ylab = "Number of Fish", main = "Fish Caught by Section",
-        las = 1, col = "blue", ylim = c(0, 12000))
+barplot(section, 
+        xlab = "Section", ## adds axis labels
+        ylab = "Number of Fish", 
+        main = "Fish Caught by Section", ## adds title to plot
+        las = 1, ## changes orientation of axis labels
+        col = "blue", ## specifies the color of the bars
+        ylim = c(0, 12000) ## specifies the range of y-values to plot
+        )
 ```
 
 
