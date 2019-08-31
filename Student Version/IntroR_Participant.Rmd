@@ -683,7 +683,7 @@ object with the new object).
 
 
 ```{r clean, tidy = TRUE}
-BlackfootFish2 <- na.omit(BlackfootFish) 
+BlackfootFish_clean <- na.omit(BlackfootFish) 
 ## Creates a new dataframe, where the NA's have all been removed 
 ```
 
@@ -699,14 +699,14 @@ second variable.
 ```{r scatter1, purl = TRUE}
 #?plot()
 plot(length ~ weight, 
-     data = BlackfootFish2) 
+     data = BlackfootFish_clean) 
 
 ```
 
 
 ```{r scatter2, purl = TRUE}
 plot(length ~ weight, 
-     data = BlackfootFish2, 
+     data = BlackfootFish_clean, 
      xlab = "Weight (grams)", ## adds in axis labels 
      ylab = "Length (cm)", 
      las = 1 ## changes orientation of axis labels
@@ -719,12 +719,12 @@ A histogram shows how many observations fall into a given range of values of a
 variable.  
 
 ```{r hist1, purl = TRUE}
-hist(BlackfootFish2$length) 
+hist(BlackfootFish_clean$length) 
 ```
 
 
 ```{r hist2, purl = TRUE}
-hist(BlackfootFish2$length, 
+hist(BlackfootFish_clean$length, 
      freq = F ## converts to a density plot (area adds to 1) 
     )
 ```
@@ -732,14 +732,14 @@ hist(BlackfootFish2$length,
 
 ```{r, eval = FALSE}
 ## Does freq need to be named?
-hist(BlackfootFish2$length, FALSE)
+hist(BlackfootFish_clean$length, FALSE)
 ## Why is there an error about the "number of breaks"?
 
 ```
 
 
 ```{r hist3, purl = TRUE}
-hist(BlackfootFish2$length, 
+hist(BlackfootFish_clean$length, 
      freq = F, 
      xlab = "Length", ## adds x-axis lable 
      main = "Fish Lengths in Blackfoot River" ## adds title to plot
@@ -748,7 +748,7 @@ hist(BlackfootFish2$length,
 
 
 ```{r hist4, purl = TRUE}
-hist(BlackfootFish2$length, 
+hist(BlackfootFish_clean$length, 
      freq = F, 
      nclass = 50, ## changes the number of bins
      xlab = "Length", 
@@ -766,7 +766,7 @@ variable.
 ```{r boxplot} 
 ## What other options are available to add to your boxplot?
 boxplot(weight ~ species, 
-        data = BlackfootFish2)
+        data = BlackfootFish_clean)
 
 ```
 
@@ -777,7 +777,7 @@ categorical variable.
 
 ```{r bar, purl = TRUE, tidy = TRUE, fig.height = 5}
 
-section <- table(BlackfootFish2$section)
+section <- table(BlackfootFish_clean$section)
 ## tables the number of fish that were caught in each section
 
 barplot(section, 
