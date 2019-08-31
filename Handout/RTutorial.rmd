@@ -15,7 +15,7 @@ output:
 ```{r, echo = FALSE}
 knitr::opts_chunk$set(tidy = TRUE, 
                       fig.align="center", 
-                      tidy.opts = list(width.cutoff = 60))
+                      tidy.opts = list(width.cutoff = 80))
 ```
 
 
@@ -54,7 +54,7 @@ has multiple tabs available.
 
 ![](images/rstudio.png)  
 
-\pagebreak 
+\newpage 
 
 # Work Flow in `R`  
 
@@ -82,11 +82,6 @@ all the project's pieces are in the same folder. This allows for a clean workflo
 and a simple working directory for `R`. When you are executing code for a 
 document/script `R` will search for things (such as data) in the 
 \underline{same} folder as the document/script, which is called a _relative path_.
-If you are having trouble loading your data into RStudio and you have saved your
-files in this way, it is possible that `R` is searching in the wrong location 
-and you need to change your working directory.
-
-\newpage
 
 The easiest way to do this is, whenever you start working on a new project in 
 RStudio, 
@@ -120,12 +115,12 @@ re-run our code after today's workshop, it is better to type the command we want
 If R is ready to accept commands, the `R` console (in the bottom-left) will 
 show a `>` prompt. When `R` receives a command (by typing, copy-pasting, or 
 using the shortcut), it will execute it, and when finished will display the 
-results and show the `>` symbol once again.  
-If `R` is still waiting for you to provide it with additional instructions, a `+`
-will appear in the console. This should tell you that you didn't finish your 
-command. You could have forgotten to close your parenthesis or a quotation. If 
-this happens and you are unsure of what went wrong, click inside the console and 
-hit the `Esc` key. Then you can start over and figure out where you went wrong!
+results and show the `>` symbol once again. If `R` is still waiting for you to 
+provide it with additional instructions, a `+` will appear in the console. 
+This should tell you that you didn't finish your command. You could have 
+forgotten to close your parenthesis or a quotation. If this happens and you are
+unsure of what went wrong, click inside the console and hit the `Esc` key. 
+Then you can start over and figure out where you went wrong!
 
 
 ## Calculator  
@@ -166,14 +161,14 @@ is a scalar.
 __Remarks:__  
 
 * In the above code `<-` is the assignment operator. It assigns values on the 
-right to objects on the left. So, after executing `year <- 3`, the value of 
-`year` is `6`. The arrow can be read as 3 goes into year. For historical reasons,
+right to objects on the left. So, after executing `year <- 6`, the value of 
+`year` is `6`. The arrow can be read as `6` goes into `year`. For historical reasons,
 you can also use = for assignments, but not in every context. Because of the 
 slight differences in syntax, it is good practice to always use `<-` for 
 assignments.  
 
     + In RStudio, typing Alt at the same time as the - key will write `<-` in a 
-    single keystroke. Neat! == 
+    single keystroke. Neat!   
 
 * There are a few simple rules that apply when creating the same of a new object
 (like we did above):  
@@ -252,7 +247,7 @@ y <-  x + 6
 \vspace{0.25cm}
 
 **Exercise 1:** Change the value of `x` to back to 6 and see what the value of 
-`y` is. Did it change from before? Is the value of `y` 8 or 12?
+`y` is. Did it change from before?  
 
 # Working with Different Data Types 
 
@@ -287,13 +282,13 @@ lines of code and decide what type of data the vectors contain.
 
 \vspace{0.25cm}
 
-```{r}
+```{r, eval = FALSE}
 class(temps)
 
 class(animals)
 ```
 
-\newpage
+\vspace{0.25cm}
 
 **Exercise 2:** Create a vector that contains decimal valued numbers. Then check
 what data type does that vector contain?
@@ -303,9 +298,9 @@ what data type does that vector contain?
 
 ```
 
-\vspace{0.25cm}
+\newpage
 
-Another possible data type is a logical (Boolean) value. This type of vector 
+Another possible data type is a logical (Boolean) value. This type of data  
 takes on values of `TRUE` and `FALSE`. But, we said that vectors could only be 
 numbers or characters. If `TRUE` and `FALSE` don't have quotations around them,
 then they aren't characters. So, then they must be numbers. What numbers do you 
@@ -346,10 +341,10 @@ over others. Can we draw a diagram of the hierarchy?
 
 # Lists  
  
-While the elements of vectors have to be of the same data type, a list is an `R`
-object that allows for you to store any number of any type of object. If you 
-have a vector, a matrix, a character, you can store all of them into one list 
-object!
+While the elements of vectors have to be of the same data type, a list is a
+special vector in `R` that allows for you to store a variety of types of 
+objects. If you have a vector, a matrix, a character, you can store all of them
+into one list object!
 
 The arguments to the list function are the components of the list. Where the 
 components can be characters, vectors, matrices, or other data structures. 
@@ -452,7 +447,7 @@ names(BlackfootFish) ## What does this output refer to?
 str(BlackfootFish) ## What is the structure of the data?
 ```
 
-\pagebreak 
+\newpage 
 
 ```{r}
 summary(BlackfootFish) ## What is the data type of each variable in our dataset?
@@ -471,14 +466,17 @@ Here are some:
     + `nrow(data)`: number of rows  
     + `ncol(data)`: number of columns  
 
+
 - content:  
     + `head(data)`: first 6 rows  
     + `tail(data)`: last 6 rows  
     + `View(data)`: opens viewer window in separate tab  
     
+
 - names:  
     + `colnames(data)`: column names of dataframe  
     + `rownames(data)`: row names of dataframe  
+
 
 - summary of content:  
     + `str(data)`: structure of object and information about the columns  
@@ -533,7 +531,8 @@ above, using the following code.
 \vspace{0.25cm}
 
 ```{r bracket, purl = TRUE}  
-years <- BlackfootFish[, 5] ## This takes ALL rows of data but only the fifth column
+years <- BlackfootFish[, 5] 
+## This takes ALL rows of data but only the fifth column
 ## Same as years <- BlackfootFish[1:18352, 5]
 
 str(years)
@@ -549,12 +548,14 @@ x <- as.matrix(cbind(c(1, 5, 9, 13),
                      c(3, 7, 11, 15), 
                      c(4, 8, 12, 16)))
 
-head(x)
+x
 ```
 
 \vspace{0.25cm}
 
 **Exercise 4:** What would be output if you entered: `x[3, ]`?  
+
+\vspace{0.25cm}
 
 **Exercise 5:** What would you input to get an output of 4?
 
@@ -569,14 +570,20 @@ df <- data.frame(
   z = c(2010, 2015, 2018, 2017, 2019)
   )
 
-head(df)
+df
 ```
+
+\vspace{0.25cm}
 
 **Exercise 6:** What would you input to get an output of `2015`? Can you 
 think of two ways to do it?
 
+\vspace{0.25cm}
+
 **Exercise 7:** How would you pull off only columns `x` and `z`? Can you 
 think of two ways to do it?
+
+\vspace{0.25cm}
 
 **Exercise 8:** How would you modify the script below, to get an output 
 of `[1] 22 24`? 
@@ -592,8 +599,9 @@ s[]
 
 **Exercise 9:** What would be output if you entered: `s[3, ]`?  
 
+\vspace{0.25cm}
+
 **Exercise 10:** What would you input to get an output of `[1] 22 49`? 
-?
 
 \vspace{0.25cm}
 
@@ -618,19 +626,17 @@ as factors instead of characters, we need to change their data type.
 \vspace{0.25cm}
 
 ```{r factors, purl = TRUE}  
-unique(BlackfootFish$species)  
-## tells you the unique values of species
+unique(BlackfootFish$species) ## tells you the unique values of species
 
-unique(BlackfootFish$section) 
-## tells you the unique values of section  
+unique(BlackfootFish$section) ## tells you the unique values of section  
 
-BlackfootFish$speciesF <- as.factor(BlackfootFish$species)
+BlackfootFish$speciesF <- as.factor(BlackfootFish$species) 
 ## creates a new variable that is the factor version of species
-BlackfootFish$sectionF <- as.factor(BlackfootFish$section)
+BlackfootFish$sectionF <- as.factor(BlackfootFish$section) 
 ## creates a new variable that is the factor version of section
 ```
 
-\pagebreak
+\newpage
 
 There is also a function that will allow for you to specify the order of the 
 levels of a factor! As we saw before, the `as.factor` function chooses the 
@@ -641,30 +647,29 @@ Using the `factor` function this would look like:
 
 \vspace{0.25cm}
 
-```{r}
+```{r, tidy = FALSE}
 BlackfootFish$speciesF <- factor(BlackfootFish$species, 
                                 levels = c("Bull", "Brown", "RBT", "WCT"))
 ```
 
-\vspace{0.25cm}
-
 ## Practice:  
 
-**Exercise 11:** Year was saved as an integer data type (1989 - 2006), but it is
-a categorical variable (a factor). Write the `R` code to create a new variable 
-called `yearF` that is a factor of `year` (as you did with section and species). 
+**Exercise 11:** Year was saved as an integer data type (1989 - 2006), but we 
+may want to consider it to be a categorical variable (a factor). Write the `R` 
+code to create a new variable called `yearF` that is a factor of `year` 
+(as you did with section and species). 
 
 ```{r verify}
 
 ```
 
-\vspace{1cm}
+\vspace{0.25cm}
 
 **Exercise 12:** Now, verify that `yearF` is viewed as a categorical variable, 
 with the same levels as `year`. (hint: you have already used three functions 
 that would do this for you)  
 
-\vspace{1cm}
+\vspace{0.25cm}
 
 The issue with factors, lies with if/when you want to change it back to a 
 number or character. In the code below I've decided that I don't want year 
@@ -677,11 +682,12 @@ the `as.numeric()` function on the yearF variable?
 BlackfootFish$yearF <- as.factor(BlackfootFish$year)
 ```
 
-```{r factor_convert}
+```{r factor_convert, tidy = FALSE}
 
 year_recover <- as.numeric(BlackfootFish$yearF)
 
-ds <- data.frame(BlackfootFish$yearF, year_recover)
+ds <- data.frame(original = BlackfootFish$yearF, 
+                 recovered = year_recover)
 head(ds)
 
 ```
@@ -701,6 +707,8 @@ We're going to install a few packages that are often used.
 * Type in `devtools` and `tidyverse` into the blank line (separated by a comma)  
 * Check the __Install dependencies__ box  
 * Click on the __Import__ button  
+
+\newpage 
 
 There will be a large amount of output coming out of the console. This output is
 `R` trying to download the package(s) you requested by contacting the mirror you
@@ -750,7 +758,7 @@ in their respective packages, that you have to choose from.
 for ____ in specified packages and libraries:,`" and suggests you use a `??` 
 instead.  
     
-    + A `??` in front of the function name will search __all__ of `R` for named 
+    + A `??` in front of the function name will search __all of `R`__ for named 
     functions similar to what you typed.  
     + The output will tell you what package the function is in, as well as the 
     function's name (`package::function`).  
@@ -764,7 +772,7 @@ sections:
 
 * Description: An extended description of what the function does.   
 * Usage: The arguments of the function and their default values.     
-* Arguments: An explanation of the data each argument is expecting.  
+* Arguments: An explanation of the object each argument is expecting.  
 * Details: Any important details to be aware of.    
 * Value: The object the function returns.      
 * See Also: Any related functions that may be useful.    
@@ -776,13 +784,13 @@ In `R` there are both functions that are built in (require no package to be
 loaded), as well as functions that are housed within specific packages. You have
 already used a few built in functions to inspect the structure of the 
 BlackfootFish data (`str`, `class`, `summary`). As we know, a function 
-transforms an input into an output. You have to provide `R` with the inputs 
-(arguments) required for the function to generate an output. The argument(s) 
-inside a function happen after the `(` symbol. You know an object is a function
-when it is immediately followed by a  `(` and the corresponding closing `)` 
-comes after the arguments are complete. The output of a function does not have 
-to be numerical and it doesn't have to be singular, it can be a set of things or
-a dataset.   
+transforms an input (potentially multiple) into an output. You have to provide
+`R` with the inputs (arguments) required for the function to generate an output.
+The argument(s) inside a function happen after the `(` symbol. You know an 
+object is a function when it is immediately followed by a  `(` and the 
+corresponding closing `)` comes after the arguments are complete. The output of 
+a function does not have to be numerical and it typically is not a single 
+number, it can be a set of things or a dataset.   
 
 Arguments describe the details of what a function is to do. Some functions take 
 arguments that are specified by the user, or, if left undeclared, take on 
@@ -881,7 +889,7 @@ object with the new object).
 \vspace{0.25cm}
 
 ```{r clean, tidy = TRUE}
-BlackfootFish2 <- na.omit(BlackfootFish) 
+BlackfootFish_clean <- na.omit(BlackfootFish) 
 ## Creates a new dataframe, where the NA's have all been removed 
 ```
 
@@ -906,22 +914,22 @@ second variable.
 
 \vspace{0.25cm}
 
-```{r scatter1, purl = TRUE}
+```{r scatter1, tidy = FALSE}
 #?plot()
 plot(length ~ weight, 
-     data = BlackfootFish2) 
+     data = BlackfootFish_clean) 
 
 ```
 
 \newpage
 
-```{r scatter2, purl = TRUE}
+```{r scatter2, tidy = FALSE}
 plot(length ~ weight, 
-     data = BlackfootFish2, 
-     xlab = "Weight (grams)", 
+     data = BlackfootFish_clean, 
+     xlab = "Weight (gm)", ## adding in axis labels
      ylab = "Length (cm)", 
-     las = 1) 
-## adding in axis labels and changing orientation of axis labels
+     las = 1 ##changing orientation of axis labels
+     ) 
 ```
 
 ## Distribution
@@ -932,42 +940,45 @@ variable.
 \vspace{0.25cm}
 
 ```{r hist1, purl = TRUE}
-hist(BlackfootFish2$length) 
+hist(BlackfootFish_clean$length) 
 ```
 
 \newpage
 
-```{r hist2, purl = TRUE}
-hist(BlackfootFish2$length, freq = F) ## converts to a density plot (area adds to 1) 
+```{r hist2, tidy = FALSE}
+hist(BlackfootFish_clean$length, 
+     freq = F) ## converts to a density plot (area adds to 1) 
 ```
 
 \vspace{0.25cm}
 
 ```{r, eval = FALSE}
 ## Does freq need to be named?
-hist(BlackfootFish2$length, FALSE)
+hist(BlackfootFish_clean$length, FALSE)
 ## Why is there an error about the "number of breaks"?
 
 ```
 
 \vspace{0.25cm}
 
-```{r hist3, purl = TRUE}
-hist(BlackfootFish2$length, 
+```{r hist3, tidy = FALSE}
+hist(BlackfootFish_clean$length, 
      freq = F, 
-     xlab = "Length", 
-     main = "Fish Lengths in Blackfoot River") 
-## adds x-axis label AND title to plot
+     xlab = "Length", ## adds x-axis label 
+     main = "Fish Lengths in Blackfoot River" ## adds title to plot
+     ) 
 ```
 
 \newpage
 
-```{r hist4}
-hist(BlackfootFish2$length, freq = F, nclass = 50, 
+```{r hist4, tidy = FALSE}
+hist(BlackfootFish_clean$length, 
+     freq = F, 
+     nclass = 50, ## changes the number of bins 
      xlab = "Length", 
      main = "Fish Lengths in the Blackfoot River", 
-     las = 1) 
-## changes the number of bins and orientation of axis labels
+     las = 1 ## changes orientation of axis labels
+     ) 
 ```
 
 ## Side-by-Side Boxplots  
@@ -978,12 +989,13 @@ variable.
 
 \vspace{0.25cm}
 
-```{r boxplot} 
+```{r boxplot, tidy = FALSE, fig.height = 4, fig.width = 5} 
 ## What other options are available to add to your boxplot?
-boxplot(weight ~ species, data = BlackfootFish2)
+boxplot(weight ~ species, 
+        data = BlackfootFish_clean)
 ```
 
-\pagebreak 
+\vspace{0.25cm} 
 
 ## Bar Charts  
 
@@ -992,13 +1004,19 @@ categorical variable.
 
 \vspace{0.25cm}
 
-```{r bar, purl = TRUE, tidy = TRUE, fig.height = 5}
+```{r bar, tidy = FALSE, fig.height = 5}
 
-section <- table(BlackfootFish2$section)
+section <- table(BlackfootFish_clean$section)
 ## tables the number of fish that were caught in each section
 
-barplot(section, xlab = "Section", ylab = "Number of Fish", main = "Fish Caught by Section",
-        las = 1, col = "blue", ylim = c(0, 12000))
+barplot(section, 
+        xlab = "Section", ## adds axis labels to plot 
+        ylab = "Number of Fish", 
+        main = "Fish Caught by Section", ## adds title to plot
+        las = 1, ## changes orientation of axis labels
+        col = "blue", ## specifies what color the bars should be
+        ylim = c(0, 12000) ## specifies what range of y-values to plot
+        )
 ```
 
 \vspace{0.25cm}
@@ -1022,7 +1040,7 @@ the dataset.
 
 ```
 
-\pagebreak 
+\newpage 
 
 # Terminology Used in Workshop
 
