@@ -185,8 +185,7 @@ class(logic)
 
 
 **Exercise 3:** What happens when we try to mix different data types into one 
-vector?
-Speculate what will happen when we run each of the following lines of code:
+vector? Speculate what will happen when we run each of the following lines of code:
 
 ```{r}
 num_char <- c(1, 2, 3, "a")

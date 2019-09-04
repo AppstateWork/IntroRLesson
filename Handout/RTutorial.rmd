@@ -928,7 +928,7 @@ plot(length ~ weight,
      data = BlackfootFish_clean, 
      xlab = "Weight (gm)", ## adding in axis labels
      ylab = "Length (cm)", 
-     las = 1 ##changing orientation of axis labels
+     las = 1 ## changing orientation of axis labels
      ) 
 ```
 
