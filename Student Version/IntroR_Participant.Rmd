@@ -12,7 +12,7 @@ output:
     fig_width: 5
 ---
 
-# Introduction  
+# Introduction to Programming in `R` (30 minutes) 
 
 The term `R` is used to refer to both the programming language as well as the 
 software that interprets the scripts written using it. The learning curve may be
@@ -160,8 +160,8 @@ class(temps)
 class(animals)
 ```
 
-**Exercise 2:** Create a vector that contains decimal valued numbers. Then check
-what data type does that vector contain?
+**Exercise 2:** Use your neighbor to create a vector that contains decimal 
+valued numbers. Then check, what data type does that vector contain?
 
 ```{r}
 # Exercise 2 code here!
@@ -185,7 +185,8 @@ class(logic)
 
 
 **Exercise 3:** What happens when we try to mix different data types into one 
-vector? Speculate what will happen when we run each of the following lines of code:
+vector? Talk with your neighbor to speculate what will happen when we run each 
+of the following lines of code:
 
 ```{r}
 num_char <- c(1, 2, 3, "a")
@@ -221,6 +222,8 @@ my_first_list
 
 
 __TAKE A BREAK!__
+
+# Working with Data in `R` (30 minutes) 
 
 ## Importing Data  
 
@@ -338,31 +341,6 @@ str(years)
 
 ## Practice:
 
-The following is a preview of the matrix `x`: 
-
-```{r, echo = FALSE}
-x <- as.matrix(cbind(c(1, 5, 9, 13),
-                     c(2, 6, 10, 14), 
-                     c(3, 7, 11, 15), 
-                     c(4, 8, 12, 16)))
-
-head(x)
-```
-
-**Exercise 4:** What would be output if you entered: `x[3, ]`?  
-
-```{r}
-# Exercise 4 code here!
-
-```
-
-**Exercise 5:** What would you input to get an output of 4?
-
-```{r}
-# Exercise 5 code here!
-
-```
-
 The following is a preview of the dataframe `df`: 
 
 ```{r, echo = FALSE}
@@ -375,40 +353,31 @@ df <- data.frame(
 head(df)
 ```
 
-**Exercise 6:** What would you input to get an output of `2015`? Can you think of two ways to do it?
+**Exercise 4:** What would you input to get an output of `2015`? How did your 
+neighbor do it? Was their method different?  
+
+```{r}
+# Exercise 4 code here!
+
+```
+
+**Exercise 5:** What would be output if you entered: `df[3, ]`? How is that 
+different from entering `df[, 3]`?    
+
+```{r}
+# Exercise 5 code here!
+
+```
+
+
+**Exercise 6:** How would you pull off only columns `x` and `y`? How would you 
+modify this approach to pull off columns `x` and `z`?  
 
 ```{r}
 # Exercise 6 code here!
 
 ```
 
-**Exercise 7:** How would you pull off only columns `x` and `z`? Can you think of two ways to do it?
-
-```{r}
-# Exercise 7 code here!
-
-```
-
-**Exercise 8:** How would you modify the script below, to get an output of `[1] 22 24`? 
-
-```{r, eval = FALSE}
-s <- c(22, 24, 49, 18, 1, 6)
-s[]
-```
-
-**Exercise 9:** What would be output if you entered: `s[3, ]`?  
-
-```{r}
-# Exercise 9 code here!
-
-```
-
-**Exercise 10:** What would you input to get an output of `[1] 22 49`? 
-
-```{r}
-# Exercise 10 code here!
-
-```
 
 ## Changing Data Type  
 
@@ -457,21 +426,21 @@ BlackfootFish$speciesF <- factor(BlackfootFish$species,
 
 ## Practice:  
 
-**Exercise 11:** Year was saved as an integer data type (1989 - 2006), but it is a categorical 
+**Exercise 7:** Year was saved as an integer data type (1989 - 2006), but it is a categorical 
 variable (a factor). Write the `R` code to create a new variable called `yearF` 
 that is a factor of `year` (as you did with section and species). 
 
 ```{r}
-# Exercise 11 code here!
+# Exercise 7 code here!
 
 ```
 
-**Exercise 12:** Now, verify that `yearF` is viewed as a categorical variable, with the same 
+**Exercise 8:** Now, verify that `yearF` is viewed as a categorical variable, with the same 
 levels as `year`. 
 (hint: you have already used three functions that would do this for you)  
 
 ```{r}
-# Exercise 12 code here!
+# Exercise 8 code here!
 
 ```
 
@@ -686,7 +655,7 @@ BlackfootFish_clean <- na.omit(BlackfootFish)
 ## Creates a new dataframe, where the NA's have all been removed 
 ```
 
-## Data Visualization  
+## Data Visualization  (30 minutes)
 
 ### Scatterplots
 
@@ -792,20 +761,20 @@ barplot(section,
 
 ## Practice 
 
-**Exercise 13:** Using statistics or graphics, which year in our dataset had the 
+**Exercise 9:** Using statistics or graphics, which year in our dataset had the 
 most fish caught?  
 
 ```{r}
-# Exercise 13 code here!
+# Exercise 9 code here!
 
 ```
 
 
-**Exercise 14:** Make a boxplot of the fish weights over the different years in 
+**Exercise 10:** Make a boxplot of the fish weights over the different years in 
 the dataset.  
 
 ```{r}
-# Exercise 14 code here!
+# Exercise 10 code here!
 
 ```
 
