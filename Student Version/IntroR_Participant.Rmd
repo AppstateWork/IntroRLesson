@@ -399,6 +399,7 @@ as factors instead of characters, we need to change their data type.
 
 
 ```{r factors, purl = TRUE}  
+
 unique(BlackfootFish$species)  
 ## tells you the unique values of species
 
@@ -426,17 +427,17 @@ BlackfootFish$speciesF <- factor(BlackfootFish$species,
 
 ## Practice:  
 
-**Exercise 7:** Year was saved as an integer data type (1989 - 2006), but it is a categorical 
-variable (a factor). Write the `R` code to create a new variable called `yearF` 
-that is a factor of `year` (as you did with section and species). 
+**Exercise 7:** Year was saved as an integer data type (1989 - 2006), but it is 
+a categorical variable (a factor). Write the `R` code to create a new variable 
+called `yearF` that is a factor of `year` (as you did with section and species). 
 
 ```{r}
 # Exercise 7 code here!
 
 ```
 
-**Exercise 8:** Now, verify that `yearF` is viewed as a categorical variable, with the same 
-levels as `year`. 
+**Exercise 8:** Now, verify that `yearF` is viewed as a categorical variable, 
+with the same levels as `year`. 
 (hint: you have already used three functions that would do this for you)  
 
 ```{r}
@@ -446,9 +447,9 @@ levels as `year`.
 
 
 The issue with factors, lies with if/when you want to change it back to a 
-number or character. In the code below I've decided that I don't want year 
-to be a factor and want to change it back to numeric. What happens when I use 
-the `as.numeric()` function on the yearF variable?  
+number. In the code below I've decided that I don't want year to be a factor 
+and want to change it back to numeric. What happens when I use the 
+`as.numeric()` function on the `yearF` variable?  
 
 ```{r, echo = FALSE}
 BlackfootFish$yearF <- as.factor(BlackfootFish$year)
